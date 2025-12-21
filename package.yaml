@@ -1,0 +1,20 @@
+name: rpg-bot
+version: 1.0.0
+synopsis: RPG Bot API
+
+dependencies:
+- base >= 4.7 && < 5
+- scotty
+- aeson
+- text
+- containers
+- random
+- mtl
+- wai
+- wai-cors
+- http-types
+
+executables:
+  rpg-bot:
+    main: Main.hs
+    source-dirs: src

@@ -12,6 +12,21 @@ build-type:     Simple
 executable rpg-bot
   main-is: Main.hs
   other-modules:
+      API.DTO
+      API.Routes
+      API.Swagger
+      Application.AdventureService
+      Application.CharacterService
+      Application.CombatService
+      Application.GameService
+      Domain.Character
+      Domain.Dice
+      Domain.Enemy
+      Domain.Entry
+      Domain.StatBlock
+      Domain.Types
+      Infrastructure.JSON
+      Infrastructure.Repository
       Paths_rpg_bot
   hs-source-dirs:
       src
@@ -19,6 +34,8 @@ executable rpg-bot
       aeson
     , base >=4.7 && <5
     , containers
+    , directory
+    , filepath
     , http-types
     , mtl
     , random

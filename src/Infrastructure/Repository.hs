@@ -2,7 +2,7 @@
 
 module Infrastructure.Repository where
 
-import Data.Aeson (eitherDecodeFileStrict, encodeFile, FromJSON, ToJSON, object, withObject, (.=), (.:))
+import Data.Aeson (eitherDecodeFileStrict, encodeFile, FromJSON, ToJSON, toJSON, parseJSON, object, withObject, (.=), (.:))
 import qualified Data.Map as M
 import Control.Exception (catch, IOException)
 import System.Directory (doesFileExist, createDirectoryIfMissing)

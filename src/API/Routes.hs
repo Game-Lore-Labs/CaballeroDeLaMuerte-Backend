@@ -20,7 +20,12 @@ import Application.GameService
 import Application.AdventureService
 import Application.CombatService
 import Application.CharacterService
-import API.DTO
+import qualified API.DTO as DTO
+import API.DTO (AbilityCheckRequest(..), SavingThrowRequest(..), CombatAttackRequest(..), 
+                DiceRollRequest(..), SelectOptionRequest(..), okResponse, errResponse,
+                GameStateDTO(..), EntryDTO(..), OptionResultDTO(..), CheckResultDTO(..),
+                CombatStatusDTO(..), CombatActionDTO(..), DiceRollDTO(..),
+                fromCharacter, fromItem, fromOption, fromEnemy)
 import API.Swagger
 
 -- | Server state holding app state and optional combat state
@@ -37,7 +42,7 @@ emptyServerState = ServerState Nothing Nothing
 parseBody :: FromJSON a => ActionM a
 parseBody = jsonData `rescue` (\_ -> do
     status badRequest400
-    json $ errResponse "Invalid JSON body"
+    json (errResponse "Invalid JSON body" :: DTO.ApiResponse String)
     finish)
 
 -- | Require app state to be initialized
@@ -47,7 +52,7 @@ requireAppState stateRef = do
     case serverAppState serverState of
         Nothing -> do
             status badRequest400
-            json $ errResponse "Game not initialized"
+            json (errResponse "Game not initialized" :: DTO.ApiResponse String)
             finish
         Just appState -> pure appState
 
@@ -58,7 +63,7 @@ requireCombatState stateRef = do
     case serverCombatState serverState of
         Nothing -> do
             status badRequest400
-            json $ errResponse "Not in combat"
+            json (errResponse "Not in combat" :: DTO.ApiResponse String)
             finish
         Just combatState -> pure combatState
 
@@ -111,7 +116,7 @@ routes stateRef config = do
             ServiceOk _  -> json $ okResponse ("Game saved" :: String)
             ServiceErr e -> do
                 status internalServerError500
-                json $ errResponse e
+                json (errResponse e :: DTO.ApiResponse String)
 
     post "/game/load" $ do
         result <- liftIO $ initializeApp config
@@ -121,7 +126,7 @@ routes stateRef config = do
                 json $ okResponse ("Game loaded" :: String)
             ServiceErr e -> do
                 status internalServerError500
-                json $ errResponse e
+                json (errResponse e :: DTO.ApiResponse String)
 
     -- Entry / Adventure
 
@@ -171,7 +176,7 @@ routes stateRef config = do
     post "/character/check" $ do
         appState <- requireAppState stateRef
         req <- parseBody :: ActionM AbilityCheckRequest
-        (info, _) <- liftIO $ performAbilityCheck (checkSkill req) (checkDC req) appState
+        (info, _) <- liftIO $ performAbilityCheck (checkSkill req) (DTO.checkDC req) appState
         let dto = CheckResultDTO
                 { checkResultSkill   = checkSkillOrAttr info
                 , checkResultRoll    = checkRoll info
@@ -185,7 +190,7 @@ routes stateRef config = do
     post "/character/save" $ do
         appState <- requireAppState stateRef
         req <- parseBody :: ActionM SavingThrowRequest
-        (info, _) <- liftIO $ performSavingThrow (saveAttribute req) (saveDC req) appState
+        (info, _) <- liftIO $ performSavingThrow (saveAttribute req) (DTO.saveDC req) appState
         let dto = CheckResultDTO
                 { checkResultSkill   = checkSkillOrAttr info
                 , checkResultRoll    = checkRoll info
@@ -213,7 +218,7 @@ routes stateRef config = do
                 json $ okResponse dto
             Nothing -> do
                 status badRequest400
-                json $ errResponse "No combat initialized"
+                json (errResponse "No combat initialized" :: DTO.ApiResponse String)
 
     get "/combat/status" $ do
         combat <- requireCombatState stateRef
@@ -232,7 +237,7 @@ routes stateRef config = do
         if attackWeaponIndex req >= length weaponList
             then do
                 status badRequest400
-                json $ errResponse "Invalid weapon index"
+                json (errResponse "Invalid weapon index" :: DTO.ApiResponse String)
             else do
                 let weapon = weaponList !! attackWeaponIndex req
                 (result, newCombat) <- liftIO $ playerAttack (attackTargetIndex req) weapon combat
@@ -249,13 +254,12 @@ routes stateRef config = do
         (results, newCombat) <- liftIO $ allEnemiesAttack combat
         updateCombatState stateRef (Just newCombat)
         let dtos = map toActionDTO results
+            toActionDTO r = case r of
+                EnemyHit name dmg -> CombatActionDTO "enemy_hit" (Just name) (Just dmg) Nothing
+                EnemyMiss name roll -> CombatActionDTO "enemy_miss" (Just name) Nothing (Just roll)
+                PlayerDefeated -> CombatActionDTO "player_defeated" Nothing Nothing Nothing
+                _ -> CombatActionDTO "unknown" Nothing Nothing Nothing
         json $ okResponse dtos
-      where
-        toActionDTO r = case r of
-            EnemyHit name dmg -> CombatActionDTO "enemy_hit" (Just name) (Just dmg) Nothing
-            EnemyMiss name roll -> CombatActionDTO "enemy_miss" (Just name) Nothing (Just roll)
-            PlayerDefeated -> CombatActionDTO "player_defeated" Nothing Nothing Nothing
-            _ -> CombatActionDTO "unknown" Nothing Nothing Nothing
 
     post "/combat/end" $ do
         combat <- requireCombatState stateRef

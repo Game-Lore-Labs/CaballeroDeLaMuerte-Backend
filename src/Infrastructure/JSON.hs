@@ -10,7 +10,8 @@ import qualified Data.Map as M
 import qualified Data.Set as S
 import qualified Data.Text as T
 
-import Domain.Types
+import Domain.Types hiding (Success, Failure) -- Hide to avoid ambiguity
+import qualified Domain.Types as DT -- Import qualified to use DT.Success
 import Domain.StatBlock
 import Domain.Character
 import Domain.Enemy
@@ -91,13 +92,13 @@ instance FromJSON DamageType where
 
 -- CheckResult JSON instances
 instance ToJSON CheckResult where
-    toJSON Success = "Success"
-    toJSON Failure = "Failure"
+    toJSON DT.Success = "Success"
+    toJSON DT.Failure = "Failure"
 
 instance FromJSON CheckResult where
     parseJSON = withText "CheckResult" $ \t -> case t of
-        "Success" -> pure Success
-        "Failure" -> pure Failure
+        "Success" -> pure DT.Success
+        "Failure" -> pure DT.Failure
         _         -> fail "Invalid CheckResult"
 
 -- Proficiency JSON instances

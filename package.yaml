@@ -13,6 +13,8 @@ dependencies:
 - wai
 - wai-cors
 - http-types
+- directory
+- filepath
 
 executables:
   rpg-bot:

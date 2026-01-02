@@ -25,7 +25,7 @@ import API.DTO (AbilityCheckRequest(..), SavingThrowRequest(..), CombatAttackReq
                 DiceRollRequest(..), SelectOptionRequest(..), okResponse, errResponse,
                 GameStateDTO(..), EntryDTO(..), OptionResultDTO(..), CheckResultDTO(..),
                 CombatStatusDTO(..), CombatActionDTO(..), DiceRollDTO(..),
-                fromCharacter, fromItem, fromOption, fromEnemy)
+                fromCharacter, fromCharacterSheet, fromItem, fromOption, fromEnemy)
 import API.Swagger
 
 -- | Server state holding app state and optional combat state

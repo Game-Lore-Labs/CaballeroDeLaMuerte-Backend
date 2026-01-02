@@ -1,0 +1,317 @@
+[
+    [1, {
+        "entryDataId": 1,
+        "entryDataNarrative": "Al amanecer del día siguiente, siguiendo los pocos fragmentos de información que tienes, ensillas tu caballo y cabalgas hacia las afueras de la ciudad. Los aldeanos te prestan poca atención mientras pasas.\n\nEl viaje al Bosque Weathercote está al este. Al mediodía llegas a un letrero que te dice que te quedan otras 15 millas por recorrer.\n\nNo muy lejos del letrero hay una pequeña posada y taberna. Un anciano está sentado en una silla al sol de la tarde, y levanta una jarra de cerveza cuando pasas.\n\n\"¡Última bebida por muchas millas!\" te llama el anciano. \"¡Ven, siéntate! ¡Te invito a una cerveza!\"",
+        "entryDataOptions": [
+            {"id": 1, "description": "Aceptar la invitación del anciano", "outcome": {"type": "GoToEntry", "entry": 2}},
+            {"id": 2, "description": "Seguir cabalgando hacia el bosque", "outcome": {"type": "GoToEntry", "entry": 3}}
+        ],
+        "entryDataRules": []
+    }],
+    [2, {
+        "entryDataId": 2,
+        "entryDataNarrative": "Atas tu caballo al porche de la taberna y te unes al anciano, quien te ofrece cerveza y estofado.\n\n\"¿Qué te trae por aquí?\" pregunta el anciano.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Contarle sobre tu misión", "outcome": {"type": "GoToEntry", "entry": 4}},
+            {"id": 2, "description": "Simplemente reponerte y seguir tu camino", "outcome": {"type": "GoToEntry", "entry": 3}}
+        ],
+        "entryDataRules": []
+    }],
+    [3, {
+        "entryDataId": 3,
+        "entryDataNarrative": "Es tarde cuando finalmente llegas al Bosque Weathercote. Allí, al borde del bosque, acampas. El Bosque es denso, el follaje espeso.\n\nTe despiertas justo antes del amanecer por un ruido. Silenciosamente, tomas tu arma y avanzas. Lo que sea que estaba al acecho capta tu olor y se aleja rápidamente.\n\nLos primeros rayos del amanecer comienzan a asomarse. Pisas el camino y entras en el Bosque Weathercote...",
+        "entryDataOptions": [
+            {"id": 1, "description": "Entrar en el Bosque Weathercote", "outcome": {"type": "GoToEntry", "entry": 100}}
+        ],
+        "entryDataRules": []
+    }],
+    [4, {
+        "entryDataId": 4,
+        "entryDataNarrative": "Le cuentas al anciano sobre tu misión - la búsqueda de Darek Brewmont, secuestrado por el Caballero de la Muerte.\n\nEl anciano escucha atentamente. \"He oído historias sobre ese Caballero. Dicen que fue colgado hace muchos años, del gran Árbol Rojo en el corazón del Bosque Weathercote. Dicen que solo puede ser destruido con una estaca del árbol del que fue colgado. El Árbol Rojo. Recuerda eso, viajero.\"",
+        "entryDataOptions": [
+            {"id": 1, "description": "Continuar hacia el Bosque Weathercote", "outcome": {"type": "GoToEntry", "entry": 3}}
+        ],
+        "entryDataRules": []
+    }],
+    [100, {
+        "entryDataId": 100,
+        "entryDataNarrative": "Avanzas hacia adelante, más profundo en el bosque. Los árboles parecen observar tu progreso. El sendero se bifurca.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Avanzar con sigilo (Sigilo CD 12)", "outcome": {"type": "SkillCheck", "skill": "Stealth", "dc": 12, "success": 101, "failure": 102}},
+            {"id": 2, "description": "Buscar trampas (Percepción CD 12)", "outcome": {"type": "SkillCheck", "skill": "Perception", "dc": 12, "success": 103, "failure": 104}},
+            {"id": 3, "description": "Continuar sin precauciones", "outcome": {"type": "GoToEntry", "entry": 105}}
+        ],
+        "entryDataRules": []
+    }],
+    [101, {"entryDataId": 101, "entryDataNarrative": "Te mueves silenciosamente entre los árboles.", "entryDataOptions": [{"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 105}}], "entryDataRules": []}],
+    [102, {"entryDataId": 102, "entryDataNarrative": "Pisas una rama que cruje ruidosamente.", "entryDataOptions": [{"id": 1, "description": "Continuar con cuidado", "outcome": {"type": "GoToEntry", "entry": 105}}], "entryDataRules": []}],
+    [103, {"entryDataId": 103, "entryDataNarrative": "No ves trampas aquí.", "entryDataOptions": [{"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 105}}], "entryDataRules": []}],
+    [104, {"entryDataId": 104, "entryDataNarrative": "No detectas nada sospechoso.", "entryDataOptions": [{"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 105}}], "entryDataRules": []}],
+    [105, {
+        "entryDataId": 105,
+        "entryDataNarrative": "El sendero se bifurca. A la izquierda hay telarañas bloqueando el paso. A la derecha ves un edificio de piedra. Cerca hay una capa verde colgando de una rama.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Ir hacia las telarañas (izquierda)", "outcome": {"type": "GoToEntry", "entry": 110}},
+            {"id": 2, "description": "Ir hacia el edificio (derecha)", "outcome": {"type": "GoToEntry", "entry": 115}},
+            {"id": 3, "description": "Inspeccionar la capa", "outcome": {"type": "GoToEntry", "entry": 106}}
+        ],
+        "entryDataRules": []
+    }],
+    [106, {
+        "entryDataId": 106,
+        "entryDataNarrative": "Tomas la capa y te la pones. Sientes que algo cambia - te sientes más protegido.\n\n¡Has encontrado una Capa de Protección! +1 a CA y tiradas de salvación.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Ir hacia las telarañas", "outcome": {"type": "GoToEntry", "entry": 110}},
+            {"id": 2, "description": "Ir hacia el edificio", "outcome": {"type": "GoToEntry", "entry": 115}}
+        ],
+        "entryDataRules": []
+    }],
+    [110, {
+        "entryDataId": 110,
+        "entryDataNarrative": "El sendero se dobla hacia el sureste. Adelante, ves telarañas bloqueando el camino.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Quemar las telarañas con fuego", "outcome": {"type": "GoToEntry", "entry": 111}},
+            {"id": 2, "description": "Cortar las telarañas", "outcome": {"type": "GoToEntry", "entry": 112}},
+            {"id": 3, "description": "Volver y tomar otro camino", "outcome": {"type": "GoToEntry", "entry": 105}}
+        ],
+        "entryDataRules": []
+    }],
+    [111, {
+        "entryDataId": 111,
+        "entryDataNarrative": "Las telarañas se encienden. Oyes un chirrido horrible... ¡dos ARAÑAS LOBO GIGANTES emergen y te atacan!",
+        "entryDataOptions": [
+            {"id": 1, "description": "¡Combatir a las arañas!", "outcome": {"type": "StartCombat", "victory": 113, "defeat": 999}}
+        ],
+        "entryDataRules": []
+    }],
+    [112, {
+        "entryDataId": 112,
+        "entryDataNarrative": "Cortas las telarañas. ¡Algo salta sobre ti desde atrás!",
+        "entryDataOptions": [
+            {"id": 1, "description": "Defenderte (Salvación DES CD 14)", "outcome": {"type": "SaveCheck", "attribute": "Dexterity", "dc": 14, "success": 113, "failure": 114}}
+        ],
+        "entryDataRules": []
+    }],
+    [113, {
+        "entryDataId": 113,
+        "entryDataNarrative": "¡Has derrotado a las arañas! Añade 100 XP.\n\nEntre los restos de sus víctimas encuentras 21 pc, una daga, una ballesta y una Poción de Curación.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 120}}
+        ],
+        "entryDataRules": []
+    }],
+    [114, {
+        "entryDataId": 114,
+        "entryDataNarrative": "¡Una araña te muerde! Sufres 1d6 de daño. ¡Combate!",
+        "entryDataOptions": [
+            {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "victory": 113, "defeat": 999}}
+        ],
+        "entryDataRules": []
+    }],
+    [115, {
+        "entryDataId": 115,
+        "entryDataNarrative": "Un edificio bajo de piedra con puertas dobles. Una placa indica que era un templo dedicado a Amaunator.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Buscar trampas (Percepción CD 14)", "outcome": {"type": "SkillCheck", "skill": "Perception", "dc": 14, "success": 117, "failure": 118}},
+            {"id": 2, "description": "Abrir la puerta", "outcome": {"type": "GoToEntry", "entry": 119}},
+            {"id": 3, "description": "Continuar al norte", "outcome": {"type": "GoToEntry", "entry": 125}}
+        ],
+        "entryDataRules": []
+    }],
+    [117, {
+        "entryDataId": 117,
+        "entryDataNarrative": "¡Detectas una trampa de dardos en la puerta!",
+        "entryDataOptions": [
+            {"id": 1, "description": "Desarmar (Herramientas CD 14)", "outcome": {"type": "SkillCheck", "skill": "SleightOfHand", "dc": 14, "success": 121, "failure": 122}},
+            {"id": 2, "description": "Abrir de todos modos", "outcome": {"type": "GoToEntry", "entry": 119}},
+            {"id": 3, "description": "Continuar al norte", "outcome": {"type": "GoToEntry", "entry": 125}}
+        ],
+        "entryDataRules": []
+    }],
+    [118, {"entryDataId": 118, "entryDataNarrative": "No detectas trampas.", "entryDataOptions": [{"id": 1, "description": "Abrir la puerta", "outcome": {"type": "GoToEntry", "entry": 119}}, {"id": 2, "description": "Continuar al norte", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
+    [119, {
+        "entryDataId": 119,
+        "entryDataNarrative": "¡Dos dardos vuelan hacia ti!",
+        "entryDataOptions": [
+            {"id": 1, "description": "Esquivar (Salvación DES CD 14)", "outcome": {"type": "SaveCheck", "attribute": "Dexterity", "dc": 14, "success": 121, "failure": 124}}
+        ],
+        "entryDataRules": []
+    }],
+    [120, {
+        "entryDataId": 120,
+        "entryDataNarrative": "A través de la maleza ves un árbol con hojas rojo sangre. ¡El Árbol Rojo!",
+        "entryDataOptions": [
+            {"id": 1, "description": "Acercarse al Árbol Rojo", "outcome": {"type": "GoToEntry", "entry": 130}},
+            {"id": 2, "description": "Continuar por el sendero", "outcome": {"type": "GoToEntry", "entry": 125}}
+        ],
+        "entryDataRules": []
+    }],
+    [121, {
+        "entryDataId": 121,
+        "entryDataNarrative": "La trampa está desarmada. La puerta se abre revelando un pasaje hacia abajo.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Entrar", "outcome": {"type": "GoToEntry", "entry": 140}},
+            {"id": 2, "description": "Continuar al norte", "outcome": {"type": "GoToEntry", "entry": 125}}
+        ],
+        "entryDataRules": []
+    }],
+    [122, {"entryDataId": 122, "entryDataNarrative": "¡Activas la trampa! Dardos vuelan hacia ti.", "entryDataOptions": [{"id": 1, "description": "Esquivar (Salvación DES CD 14 con ventaja)", "outcome": {"type": "SaveCheck", "attribute": "Dexterity", "dc": 14, "success": 121, "failure": 124}}], "entryDataRules": []}],
+    [124, {"entryDataId": 124, "entryDataNarrative": "Los dardos te alcanzan. Sufres 2d4 de daño. La puerta está abierta.", "entryDataOptions": [{"id": 1, "description": "Entrar", "outcome": {"type": "GoToEntry", "entry": 140}}, {"id": 2, "description": "Continuar al norte", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
+    [125, {
+        "entryDataId": 125,
+        "entryDataNarrative": "Una intersección. Un letrero indica:\n- Norte: Pastizales\n- Oeste: Cementerio\n- Este: Cueva",
+        "entryDataOptions": [
+            {"id": 1, "description": "Norte - Pastizales", "outcome": {"type": "GoToEntry", "entry": 150}},
+            {"id": 2, "description": "Oeste - Cementerio", "outcome": {"type": "GoToEntry", "entry": 160}},
+            {"id": 3, "description": "Este - Cueva", "outcome": {"type": "GoToEntry", "entry": 170}}
+        ],
+        "entryDataRules": []
+    }],
+    [130, {
+        "entryDataId": 130,
+        "entryDataNarrative": "Estás ante el Árbol Rojo. Sus hojas son rojo sangre. Sientes una energía emanando de él.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Tomar una rama (crear estaca)", "outcome": {"type": "GoToEntry", "entry": 131}},
+            {"id": 2, "description": "Trepar (Atletismo CD 9)", "outcome": {"type": "SkillCheck", "skill": "Athletics", "dc": 9, "success": 132, "failure": 133}},
+            {"id": 3, "description": "Volver al sendero", "outcome": {"type": "GoToEntry", "entry": 125}}
+        ],
+        "entryDataRules": []
+    }],
+    [131, {"entryDataId": 131, "entryDataNarrative": "Tallas una rama hasta hacer una estaca afilada.\n\n¡Has obtenido una Estaca del Árbol Rojo!", "entryDataOptions": [{"id": 1, "description": "Volver al sendero", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
+    [132, {"entryDataId": 132, "entryDataNarrative": "Desde arriba ves afloramientos rocosos al norte.", "entryDataOptions": [{"id": 1, "description": "Tomar una rama", "outcome": {"type": "GoToEntry", "entry": 131}}, {"id": 2, "description": "Volver al sendero", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
+    [133, {"entryDataId": 133, "entryDataNarrative": "No puedes subir.", "entryDataOptions": [{"id": 1, "description": "Tomar una rama", "outcome": {"type": "GoToEntry", "entry": 131}}, {"id": 2, "description": "Volver", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
+    [140, {
+        "entryDataId": 140,
+        "entryDataNarrative": "Bajas escaleras hasta una cámara. Un altar de bronce de Amaunator está en el centro.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Inspeccionar el altar", "outcome": {"type": "GoToEntry", "entry": 141}},
+            {"id": 2, "description": "Buscar (Investigación CD 15)", "outcome": {"type": "SkillCheck", "skill": "Investigation", "dc": 15, "success": 142, "failure": 143}},
+            {"id": 3, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}
+        ],
+        "entryDataRules": []
+    }],
+    [141, {"entryDataId": 141, "entryDataNarrative": "Detrás del altar encuentras un Símbolo Sagrado de Amaunator.", "entryDataOptions": [{"id": 1, "description": "Buscar más", "outcome": {"type": "GoToEntry", "entry": 142}}, {"id": 2, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
+    [142, {"entryDataId": 142, "entryDataNarrative": "Encuentras un libro con información sobre el Caballero de la Muerte y un Pergamino de Curar Heridas.", "entryDataOptions": [{"id": 1, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
+    [143, {"entryDataId": 143, "entryDataNarrative": "No encuentras nada de valor.", "entryDataOptions": [{"id": 1, "description": "Inspeccionar altar", "outcome": {"type": "GoToEntry", "entry": 141}}, {"id": 2, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
+    [150, {"entryDataId": 150, "entryDataNarrative": "El bosque termina. ¡Pero no has encontrado a Darek! Debe estar en otra parte.", "entryDataOptions": [{"id": 1, "description": "Volver", "outcome": {"type": "GoToEntry", "entry": 125}}, {"id": 2, "description": "Abandonar la misión", "outcome": {"type": "GoToEntry", "entry": 999}}], "entryDataRules": []}],
+    [160, {
+        "entryDataId": 160,
+        "entryDataNarrative": "Avanzas hacia el cementerio. Al final ves una cripta grande con puertas ornamentadas.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Avanzar con sigilo (Sigilo CD 14)", "outcome": {"type": "SkillCheck", "skill": "Stealth", "dc": 14, "success": 161, "failure": 162}},
+            {"id": 2, "description": "Buscar trampas (Percepción CD 15)", "outcome": {"type": "SkillCheck", "skill": "Perception", "dc": 15, "success": 163, "failure": 164}}
+        ],
+        "entryDataRules": []
+    }],
+    [161, {"entryDataId": 161, "entryDataNarrative": "Te mueves silenciosamente.", "entryDataOptions": [{"id": 1, "description": "Ir a la cripta", "outcome": {"type": "GoToEntry", "entry": 165}}], "entryDataRules": []}],
+    [162, {"entryDataId": 162, "entryDataNarrative": "Algo se mueve bajo la tierra... ¡te han detectado!", "entryDataOptions": [{"id": 1, "description": "Ir a la cripta", "outcome": {"type": "GoToEntry", "entry": 165}}, {"id": 2, "description": "Huir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
+    [163, {"entryDataId": 163, "entryDataNarrative": "Notas una tumba con tierra fresca. La evitas.", "entryDataOptions": [{"id": 1, "description": "Ir a la cripta", "outcome": {"type": "GoToEntry", "entry": 165}}], "entryDataRules": []}],
+    [164, {"entryDataId": 164, "entryDataNarrative": "No detectas nada.", "entryDataOptions": [{"id": 1, "description": "Ir a la cripta", "outcome": {"type": "GoToEntry", "entry": 165}}], "entryDataRules": []}],
+    [165, {
+        "entryDataId": 165,
+        "entryDataNarrative": "La cripta tiene una placa: \"La Familia de-\" (el nombre está destruido). Las puertas están entreabiertas.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Revisar trampas (Percepción CD 12)", "outcome": {"type": "SkillCheck", "skill": "Perception", "dc": 12, "success": 166, "failure": 167}},
+            {"id": 2, "description": "Entrar", "outcome": {"type": "GoToEntry", "entry": 180}}
+        ],
+        "entryDataRules": []
+    }],
+    [166, {"entryDataId": 166, "entryDataNarrative": "No hay trampas.", "entryDataOptions": [{"id": 1, "description": "Entrar", "outcome": {"type": "GoToEntry", "entry": 180}}], "entryDataRules": []}],
+    [167, {"entryDataId": 167, "entryDataNarrative": "No detectas trampas.", "entryDataOptions": [{"id": 1, "description": "Entrar", "outcome": {"type": "GoToEntry", "entry": 180}}], "entryDataRules": []}],
+    [170, {"entryDataId": 170, "entryDataNarrative": "Una cueva al otro lado de un río.", "entryDataOptions": [{"id": 1, "description": "Vadear (Atletismo CD 12)", "outcome": {"type": "SkillCheck", "skill": "Athletics", "dc": 12, "success": 171, "failure": 172}}, {"id": 2, "description": "Volver", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
+    [171, {"entryDataId": 171, "entryDataNarrative": "Cruzas el río.", "entryDataOptions": [{"id": 1, "description": "Entrar a la cueva", "outcome": {"type": "GoToEntry", "entry": 175}}], "entryDataRules": []}],
+    [172, {"entryDataId": 172, "entryDataNarrative": "La corriente te arrastra. Pierdes 1 PV y tus provisiones.", "entryDataOptions": [{"id": 1, "description": "Entrar a la cueva", "outcome": {"type": "GoToEntry", "entry": 175}}], "entryDataRules": []}],
+    [175, {"entryDataId": 175, "entryDataNarrative": "Dentro de la cueva hay huesos y cadáveres. En la pared dice: \"NORTE\". Encuentras un medallón: \"A Fastus Brant, Capitán de la Guardia de Orlbar\".", "entryDataOptions": [{"id": 1, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
+    [180, {
+        "entryDataId": 180,
+        "entryDataNarrative": "Dentro de la cripta hay cuatro ataúdes. Al fondo, un pasillo continúa.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Examinar ataúdes", "outcome": {"type": "GoToEntry", "entry": 181}},
+            {"id": 2, "description": "Seguir adelante", "outcome": {"type": "GoToEntry", "entry": 185}}
+        ],
+        "entryDataRules": []
+    }],
+    [181, {"entryDataId": 181, "entryDataNarrative": "Los ataúdes están clavados firmemente.", "entryDataOptions": [{"id": 1, "description": "Seguir adelante", "outcome": {"type": "GoToEntry", "entry": 185}}], "entryDataRules": []}],
+    [185, {
+        "entryDataId": 185,
+        "entryDataNarrative": "Escuchas voces adelante. \"¡Arrodíllate, escudero!\"",
+        "entryDataOptions": [
+            {"id": 1, "description": "Avanzar con sigilo (Sigilo CD 10)", "outcome": {"type": "SkillCheck", "skill": "Stealth", "dc": 10, "success": 186, "failure": 187}}
+        ],
+        "entryDataRules": []
+    }],
+    [186, {
+        "entryDataId": 186,
+        "entryDataNarrative": "Ves una cámara con un trono. En él, un guerrero espantoso de siete pies: ¡EL CABALLERO DE LA MUERTE! Ante él, atado, está Darek Brewmont.\n\n¡Has llegado sin ser detectado!",
+        "entryDataOptions": [
+            {"id": 1, "description": "Atacar por sorpresa a distancia", "outcome": {"type": "GoToEntry", "entry": 190}},
+            {"id": 2, "description": "Atacar cuerpo a cuerpo", "outcome": {"type": "GoToEntry", "entry": 191}},
+            {"id": 3, "description": "Intentar hablar", "outcome": {"type": "GoToEntry", "entry": 192}}
+        ],
+        "entryDataRules": [
+            {"ruleDataCondition": {"tag": "HasItem", "contents": "estaca_arbol_rojo"}, "ruleDataEffect": {"type": "AddOption", "option": {"id": 99, "description": "Preparar la Estaca del Árbol Rojo", "outcome": {"type": "GoToEntry", "entry": 193}}}}
+        ]
+    }],
+    [187, {
+        "entryDataId": 187,
+        "entryDataNarrative": "El Caballero de la Muerte te ve. \"¡ASÍ QUE! ¡El gran héroe! ¡Prepárate para morir, necio!\"",
+        "entryDataOptions": [
+            {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "victory": 200, "defeat": 210}}
+        ],
+        "entryDataRules": []
+    }],
+    [190, {"entryDataId": 190, "entryDataNarrative": "Tu ataque golpea al caballero. \"¡Aaargh! ¿Quién se atreve?\" Se levanta furioso.", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "victory": 200, "defeat": 210}}], "entryDataRules": []}],
+    [191, {"entryDataId": 191, "entryDataNarrative": "Te lanzas al ataque.", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "victory": 200, "defeat": 210}}], "entryDataRules": []}],
+    [192, {"entryDataId": 192, "entryDataNarrative": "\"¿Quién eres tú para darme órdenes? ¡Prepárate para morir!\"", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "victory": 200, "defeat": 210}}], "entryDataRules": []}],
+    [193, {"entryDataId": 193, "entryDataNarrative": "Preparas la Estaca del Árbol Rojo. Si vences, podrás destruirlo permanentemente.", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "victory": 201, "defeat": 210}}], "entryDataRules": []}],
+    [200, {
+        "entryDataId": 200,
+        "entryDataNarrative": "¡El Caballero de la Muerte cae! Añade 200 XP.\n\nPero su mano se contrae... ¡no está destruido! Sin la estaca, debes huir con Darek.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Huir con Darek", "outcome": {"type": "GoToEntry", "entry": 220}}
+        ],
+        "entryDataRules": []
+    }],
+    [201, {
+        "entryDataId": 201,
+        "entryDataNarrative": "¡El Caballero de la Muerte cae! Añade 200 XP.\n\nClavas la Estaca del Árbol Rojo en su pecho. ¡Se desmorona en polvo! Un grito sobrenatural llena la cámara mientras su espíritu es liberado.\n\n\"Gracias... gracias por salvarme\", dice Darek.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Liberar a Darek y salir", "outcome": {"type": "GoToEntry", "entry": 230}}
+        ],
+        "entryDataRules": []
+    }],
+    [210, {
+        "entryDataId": 210,
+        "entryDataNarrative": "El Caballero de la Muerte te derrota. Libera a Darek para que huya, luego te toca la frente.\n\n\"Has demostrado ser digno. Tu destino se ha aclarado.\"\n\nSientes la vida abandonándote... y una nueva energía entrando.\n\n\"¡Ahora levántate como mi ESCUDERO!\"\n\n¡Te has convertido en el Escudero del Caballero de la Muerte!\n\n[FIN - DESTINO OSCURO]",
+        "entryDataOptions": [],
+        "entryDataRules": []
+    }],
+    [220, {
+        "entryDataId": 220,
+        "entryDataNarrative": "Huyes con Darek. Llegas a Orlbar y lo entregas a sus abuelos.\n\nLady Brewmont te da un collar de 700 po.\n\nPero el Caballero de la Muerte no está destruido. Volverá...\n\n[VICTORIA PARCIAL]",
+        "entryDataOptions": [
+            {"id": 1, "description": "Ver recompensas", "outcome": {"type": "GoToEntry", "entry": 240}}
+        ],
+        "entryDataRules": []
+    }],
+    [230, {
+        "entryDataId": 230,
+        "entryDataNarrative": "Entregas a Darek a sus abuelos. Lord Brewmont te paga 2000 po.\n\nHas completado tu misión. El Caballero de la Muerte ha sido destruido para siempre.\n\n¡VICTORIA TOTAL!",
+        "entryDataOptions": [
+            {"id": 1, "description": "Ver recompensas", "outcome": {"type": "GoToEntry", "entry": 240}}
+        ],
+        "entryDataRules": []
+    }],
+    [240, {
+        "entryDataId": 240,
+        "entryDataNarrative": "BOTÍN DE AVENTURA\n\nHas completado \"El Escudero del Caballero de la Muerte\".\n\nTu personaje avanza al NIVEL 3.\n\n¡Gracias por jugar!",
+        "entryDataOptions": [],
+        "entryDataRules": []
+    }],
+    [999, {
+        "entryDataId": 999,
+        "entryDataNarrative": "Tu aventura termina aquí.\n\n¿Por qué no crear un nuevo personaje e intentarlo de nuevo?\n\n¡Gracias por jugar \"El Escudero del Caballero de la Muerte\"!",
+        "entryDataOptions": [],
+        "entryDataRules": []
+    }]
+]

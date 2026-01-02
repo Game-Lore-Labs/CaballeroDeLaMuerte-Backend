@@ -1,0 +1,360 @@
+[
+    ["Goblin", {
+        "name": "Goblin",
+        "currentHP": 7,
+        "maxHP": 7,
+        "statBlock": {
+            "attributes": [
+                ["Strength", 8],
+                ["Dexterity", 14],
+                ["Constitution", 10],
+                ["Intelligence", 10],
+                ["Wisdom", 8],
+                ["Charisma", 8]
+            ],
+            "savingThrowProfs": [],
+            "skillProfs": [["Stealth", "Proficient"]],
+            "proficiencyBonus": 2,
+            "armorClass": 15,
+            "speed": 30,
+            "initiative": 2,
+            "weapons": [
+                {
+                    "name": "Lanza",
+                    "range": [20, 60],
+                    "damageType": "Piercing",
+                    "damageDice": "D6",
+                    "damageCount": 1
+                },
+                {
+                    "name": "Bastón de Huesos",
+                    "range": [5, 5],
+                    "damageType": "Bludgeoning",
+                    "damageDice": "D4",
+                    "damageCount": 1
+                },
+                {
+                    "name": "Hacha de Batalla Goblin",
+                    "range": [5, 5],
+                    "damageType": "Slashing",
+                    "damageDice": "D6",
+                    "damageCount": 1
+                }
+            ]
+        }
+    }],
+    ["Kobold", {
+        "name": "Kobold",
+        "currentHP": 5,
+        "maxHP": 5,
+        "statBlock": {
+            "attributes": [
+                ["Strength", 7],
+                ["Dexterity", 15],
+                ["Constitution", 9],
+                ["Intelligence", 8],
+                ["Wisdom", 7],
+                ["Charisma", 8]
+            ],
+            "savingThrowProfs": [],
+            "skillProfs": [
+                ["Perception", "Proficient"],
+                ["Stealth", "Proficient"]
+            ],
+            "proficiencyBonus": 2,
+            "armorClass": 12,
+            "speed": 30,
+            "initiative": 2,
+            "weapons": [
+                {
+                    "name": "Daga",
+                    "range": [5, 5],
+                    "damageType": "Piercing",
+                    "damageDice": "D4",
+                    "damageCount": 1
+                }
+            ]
+        }
+    }],
+    ["KoboldMago", {
+        "name": "Kobold Mago",
+        "currentHP": 5,
+        "maxHP": 5,
+        "statBlock": {
+            "attributes": [
+                ["Strength", 7],
+                ["Dexterity", 15],
+                ["Constitution", 9],
+                ["Intelligence", 8],
+                ["Wisdom", 7],
+                ["Charisma", 8]
+            ],
+            "savingThrowProfs": [],
+            "skillProfs": [
+                ["Perception", "Proficient"],
+                ["Stealth", "Proficient"]
+            ],
+            "proficiencyBonus": 2,
+            "armorClass": 12,
+            "speed": 30,
+            "initiative": 2,
+            "weapons": [
+                {
+                    "name": "Bola de Fuego",
+                    "range": [30, 60],
+                    "damageType": "Fire",
+                    "damageDice": "D6",
+                    "damageCount": 1
+                }
+            ]
+        }
+    }],
+    ["ArañaLoboGigante", {
+        "name": "Araña Lobo Gigante",
+        "currentHP": 11,
+        "maxHP": 11,
+        "statBlock": {
+            "attributes": [
+                ["Strength", 12],
+                ["Dexterity", 16],
+                ["Constitution", 13],
+                ["Intelligence", 3],
+                ["Wisdom", 12],
+                ["Charisma", 4]
+            ],
+            "savingThrowProfs": [],
+            "skillProfs": [
+                ["Perception", "Proficient"],
+                ["Stealth", "Proficient"]
+            ],
+            "proficiencyBonus": 2,
+            "armorClass": 13,
+            "speed": 40,
+            "initiative": 3,
+            "weapons": [
+                {
+                    "name": "Mordisco",
+                    "range": [5, 5],
+                    "damageType": "Piercing",
+                    "damageDice": "D6",
+                    "damageCount": 1
+                }
+            ]
+        }
+    }],
+    ["CiempiésGigante", {
+        "name": "Ciempiés Gigante",
+        "currentHP": 4,
+        "maxHP": 4,
+        "statBlock": {
+            "attributes": [
+                ["Strength", 5],
+                ["Dexterity", 14],
+                ["Constitution", 12],
+                ["Intelligence", 1],
+                ["Wisdom", 7],
+                ["Charisma", 3]
+            ],
+            "savingThrowProfs": [],
+            "skillProfs": [
+                ["Perception", "Proficient"],
+                ["Stealth", "Expertise"]
+            ],
+            "proficiencyBonus": 2,
+            "armorClass": 13,
+            "speed": 30,
+            "initiative": 2,
+            "weapons": [
+                {
+                    "name": "Mordisco",
+                    "range": [5, 5],
+                    "damageType": "Piercing",
+                    "damageDice": "D4",
+                    "damageCount": 1
+                }
+            ]
+        }
+    }],
+    ["Cultista", {
+        "name": "Cultista",
+        "currentHP": 9,
+        "maxHP": 9,
+        "statBlock": {
+            "attributes": [
+                ["Strength", 11],
+                ["Dexterity", 12],
+                ["Constitution", 10],
+                ["Intelligence", 10],
+                ["Wisdom", 11],
+                ["Charisma", 10]
+            ],
+            "savingThrowProfs": [],
+            "skillProfs": [
+                ["Religion", "Proficient"],
+                ["Deception", "Proficient"]
+            ],
+            "proficiencyBonus": 2,
+            "armorClass": 12,
+            "speed": 30,
+            "initiative": 1,
+            "weapons": [
+                {
+                    "name": "Ballesta de Mano",
+                    "range": [30, 120],
+                    "damageType": "Piercing",
+                    "damageDice": "D6",
+                    "damageCount": 1
+                },
+                {
+                    "name": "Cimitarra",
+                    "range": [5, 5],
+                    "damageType": "Slashing",
+                    "damageDice": "D6",
+                    "damageCount": 1
+                }
+            ]
+        }
+    }],
+    ["Esqueleto", {
+        "name": "Esqueleto",
+        "currentHP": 13,
+        "maxHP": 13,
+        "statBlock": {
+            "attributes": [
+                ["Strength", 10],
+                ["Dexterity", 14],
+                ["Constitution", 15],
+                ["Intelligence", 6],
+                ["Wisdom", 8],
+                ["Charisma", 5]
+            ],
+            "savingThrowProfs": [],
+            "skillProfs": [],
+            "proficiencyBonus": 2,
+            "armorClass": 13,
+            "speed": 30,
+            "initiative": 2,
+            "weapons": [
+                {
+                    "name": "Espada Corta",
+                    "range": [5, 5],
+                    "damageType": "Slashing",
+                    "damageDice": "D6",
+                    "damageCount": 1
+                }
+            ]
+        }
+    }],
+    ["Zombie", {
+        "name": "Zombie",
+        "currentHP": 22,
+        "maxHP": 22,
+        "statBlock": {
+            "attributes": [
+                ["Strength", 13],
+                ["Dexterity", 6],
+                ["Constitution", 16],
+                ["Intelligence", 3],
+                ["Wisdom", 6],
+                ["Charisma", 5]
+            ],
+            "savingThrowProfs": ["Wisdom"],
+            "skillProfs": [],
+            "proficiencyBonus": 2,
+            "armorClass": 8,
+            "speed": 20,
+            "initiative": -2,
+            "weapons": [
+                {
+                    "name": "Aporrear",
+                    "range": [5, 5],
+                    "damageType": "Bludgeoning",
+                    "damageDice": "D6",
+                    "damageCount": 1
+                }
+            ]
+        }
+    }],
+    ["MurciélagoDelBosque", {
+        "name": "Murciélago del Bosque",
+        "currentHP": 5,
+        "maxHP": 5,
+        "statBlock": {
+            "attributes": [
+                ["Strength", 7],
+                ["Dexterity", 15],
+                ["Constitution", 8],
+                ["Intelligence", 2],
+                ["Wisdom", 12],
+                ["Charisma", 4]
+            ],
+            "savingThrowProfs": [],
+            "skillProfs": [],
+            "proficiencyBonus": 2,
+            "armorClass": 12,
+            "speed": 30,
+            "initiative": 2,
+            "weapons": [
+                {
+                    "name": "Mordisco",
+                    "range": [5, 5],
+                    "damageType": "Piercing",
+                    "damageDice": "D4",
+                    "damageCount": 1
+                }
+            ]
+        }
+    }],
+    ["CaballeroDeLaMuerte", {
+        "name": "Caballero de la Muerte",
+        "currentHP": 32,
+        "maxHP": 32,
+        "statBlock": {
+            "attributes": [
+                ["Strength", 15],
+                ["Dexterity", 11],
+                ["Constitution", 13],
+                ["Intelligence", 12],
+                ["Wisdom", 10],
+                ["Charisma", 5]
+            ],
+            "savingThrowProfs": ["Strength"],
+            "skillProfs": [],
+            "proficiencyBonus": 2,
+            "armorClass": 15,
+            "speed": 30,
+            "initiative": 0,
+            "weapons": [
+                {
+                    "name": "Hellreaver (Espada Larga +1)",
+                    "range": [5, 5],
+                    "damageType": "Slashing",
+                    "damageDice": "D8",
+                    "damageCount": 1
+                }
+            ]
+        }
+    }],
+    ["DarekBrewmont", {
+        "name": "Darek Brewmont",
+        "currentHP": 4,
+        "maxHP": 4,
+        "statBlock": {
+            "attributes": [
+                ["Strength", 10],
+                ["Dexterity", 10],
+                ["Constitution", 10],
+                ["Intelligence", 10],
+                ["Wisdom", 10],
+                ["Charisma", 10]
+            ],
+            "savingThrowProfs": [],
+            "skillProfs": [],
+            "proficiencyBonus": 2,
+            "armorClass": 10,
+            "speed": 30,
+            "initiative": 0,
+            "weapons": []
+        }
+    }]
+]

@@ -158,6 +158,10 @@ routes stateRef config = do
         appState <- requireAppState stateRef
         json $ okResponse $ fromCharacter (getPlayer appState)
 
+    get "/character/sheet" $ do
+        appState <- requireAppState stateRef
+        json $ okResponse $ fromCharacterSheet (getPlayer appState)
+
     get "/character/inventory" $ do
         appState <- requireAppState stateRef
         let items = map fromItem $ getPlayerInventory appState

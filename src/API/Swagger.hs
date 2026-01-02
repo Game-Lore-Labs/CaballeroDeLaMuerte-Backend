@@ -160,6 +160,21 @@ pathsObject = object
             ]
         ]
 
+    , "/character/sheet" .= object
+        [ "get" .= object
+            [ "tags" .= (["Character"] :: [T.Text])
+            , "summary" .= ("Get complete character sheet" :: T.Text)
+            , "description" .= ("Returns the full character sheet including basic info (class, race, background), all attributes with scores/modifiers/saving throws, combat stats (HP, AC, initiative, speed), and all skill bonuses." :: T.Text)
+            , "operationId" .= ("getCharacterSheet" :: T.Text)
+            , "responses" .= object
+                [ "200" .= object
+                    [ "description" .= ("Complete character sheet" :: T.Text)
+                    , "content" .= jsonContent (ref "ApiResponseCharacterSheet")
+                    ]
+                ]
+            ]
+        ]
+
     , "/character/inventory" .= object
         [ "get" .= object
             [ "tags" .= (["Character"] :: [T.Text])
@@ -334,6 +349,7 @@ schemasObject = object
     , "ApiResponseEntry" .= apiResponseSchema (ref "EntryDTO")
     , "ApiResponseOptionResult" .= apiResponseSchema (ref "OptionResultDTO")
     , "ApiResponseCharacter" .= apiResponseSchema (ref "CharacterDTO")
+    , "ApiResponseCharacterSheet" .= apiResponseSchema (ref "CharacterSheetDTO")
     , "ApiResponseItems" .= apiResponseSchema (object ["type" .= ("array" :: T.Text), "items" .= ref "ItemDTO"])
     , "ApiResponseClues" .= apiResponseSchema (object ["type" .= ("array" :: T.Text), "items" .= object ["type" .= ("string" :: T.Text)]])
     , "ApiResponseCheckResult" .= apiResponseSchema (ref "CheckResultDTO")
@@ -533,6 +549,105 @@ schemasObject = object
             , "actor" .= object ["type" .= ("string" :: T.Text), "nullable" .= True]
             , "damage" .= object ["type" .= ("integer" :: T.Text), "nullable" .= True]
             , "roll" .= object ["type" .= ("integer" :: T.Text), "nullable" .= True]
+            ]
+        ]
+
+    -- Character Sheet DTOs
+    , "CharacterSheetDTO" .= object
+        [ "type" .= ("object" :: T.Text)
+        , "description" .= ("Complete character sheet with all D&D 5e information" :: T.Text)
+        , "properties" .= object
+            [ "basicInfo" .= ref "BasicInfoDTO"
+            , "attributes" .= ref "AttributesDTO"
+            , "combatStats" .= ref "CombatStatsDTO"
+            , "skills" .= ref "SkillsDTO"
+            , "inventory" .= object ["type" .= ("array" :: T.Text), "items" .= ref "ItemDTO"]
+            , "equipment" .= object ["type" .= ("array" :: T.Text), "items" .= ref "ItemDTO"]
+            , "clues" .= object ["type" .= ("array" :: T.Text), "items" .= object ["type" .= ("string" :: T.Text)]]
+            ]
+        ]
+
+    , "BasicInfoDTO" .= object
+        [ "type" .= ("object" :: T.Text)
+        , "description" .= ("Basic character information" :: T.Text)
+        , "properties" .= object
+            [ "class" .= object ["type" .= ("string" :: T.Text), "example" .= ("P\237caro (Rogue)" :: T.Text)]
+            , "level" .= object ["type" .= ("integer" :: T.Text), "example" .= (2 :: Int)]
+            , "race" .= object ["type" .= ("string" :: T.Text), "example" .= ("Humano" :: T.Text)]
+            , "background" .= object ["type" .= ("string" :: T.Text), "example" .= ("Investigador" :: T.Text)]
+            , "alignment" .= object ["type" .= ("string" :: T.Text), "example" .= ("Neutral" :: T.Text)]
+            , "experience" .= object ["type" .= ("integer" :: T.Text), "example" .= (0 :: Int)]
+            ]
+        ]
+
+    , "AttributeInfoDTO" .= object
+        [ "type" .= ("object" :: T.Text)
+        , "description" .= ("Single attribute with score, modifier, and saving throw bonus" :: T.Text)
+        , "properties" .= object
+            [ "name" .= object ["type" .= ("string" :: T.Text)]
+            , "score" .= object ["type" .= ("integer" :: T.Text), "minimum" .= (1 :: Int), "maximum" .= (30 :: Int)]
+            , "modifier" .= object ["type" .= ("integer" :: T.Text)]
+            , "savingThrow" .= object ["type" .= ("integer" :: T.Text)]
+            ]
+        ]
+
+    , "AttributesDTO" .= object
+        [ "type" .= ("object" :: T.Text)
+        , "description" .= ("All six D&D attributes" :: T.Text)
+        , "properties" .= object
+            [ "strength" .= ref "AttributeInfoDTO"
+            , "dexterity" .= ref "AttributeInfoDTO"
+            , "constitution" .= ref "AttributeInfoDTO"
+            , "intelligence" .= ref "AttributeInfoDTO"
+            , "wisdom" .= ref "AttributeInfoDTO"
+            , "charisma" .= ref "AttributeInfoDTO"
+            ]
+        ]
+
+    , "CombatStatsDTO" .= object
+        [ "type" .= ("object" :: T.Text)
+        , "description" .= ("Combat-related statistics" :: T.Text)
+        , "properties" .= object
+            [ "initiative" .= object ["type" .= ("integer" :: T.Text)]
+            , "currentHP" .= object ["type" .= ("integer" :: T.Text)]
+            , "maxHP" .= object ["type" .= ("integer" :: T.Text)]
+            , "hitDice" .= object ["type" .= ("string" :: T.Text), "example" .= ("2d8" :: T.Text)]
+            , "armorClass" .= object ["type" .= ("integer" :: T.Text)]
+            , "speed" .= object ["type" .= ("integer" :: T.Text), "description" .= ("Speed in feet" :: T.Text)]
+            , "proficiencyBonus" .= object ["type" .= ("integer" :: T.Text)]
+            ]
+        ]
+
+    , "SkillInfoDTO" .= object
+        [ "type" .= ("object" :: T.Text)
+        , "properties" .= object
+            [ "name" .= object ["type" .= ("string" :: T.Text)]
+            , "bonus" .= object ["type" .= ("integer" :: T.Text)]
+            ]
+        ]
+
+    , "SkillsDTO" .= object
+        [ "type" .= ("object" :: T.Text)
+        , "description" .= ("All 18 D&D skills with bonuses" :: T.Text)
+        , "properties" .= object
+            [ "athletics" .= ref "SkillInfoDTO"
+            , "acrobatics" .= ref "SkillInfoDTO"
+            , "sleightOfHand" .= ref "SkillInfoDTO"
+            , "stealth" .= ref "SkillInfoDTO"
+            , "arcana" .= ref "SkillInfoDTO"
+            , "history" .= ref "SkillInfoDTO"
+            , "investigation" .= ref "SkillInfoDTO"
+            , "nature" .= ref "SkillInfoDTO"
+            , "religion" .= ref "SkillInfoDTO"
+            , "animalHandling" .= ref "SkillInfoDTO"
+            , "insight" .= ref "SkillInfoDTO"
+            , "medicine" .= ref "SkillInfoDTO"
+            , "perception" .= ref "SkillInfoDTO"
+            , "survival" .= ref "SkillInfoDTO"
+            , "deception" .= ref "SkillInfoDTO"
+            , "intimidation" .= ref "SkillInfoDTO"
+            , "performance" .= ref "SkillInfoDTO"
+            , "persuasion" .= ref "SkillInfoDTO"
             ]
         ]
     ]

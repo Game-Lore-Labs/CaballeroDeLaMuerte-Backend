@@ -344,3 +344,312 @@ instance FromJSON GameStateDTO where
         <$> v .: "currentEntry"
         <*> v .: "player"
         <*> v .: "history"
+
+-- Character Sheet DTOs (Complete character information)
+
+-- | Basic character information
+data BasicInfoDTO = BasicInfoDTO
+    { biClass       :: String
+    , biLevel       :: Int
+    , biRace        :: String
+    , biBackground  :: String
+    , biAlignment   :: String
+    , biExperience  :: Int
+    } deriving (Show, Eq, Generic)
+
+instance ToJSON BasicInfoDTO where
+    toJSON bi = object
+        [ "class"       .= biClass bi
+        , "level"       .= biLevel bi
+        , "race"        .= biRace bi
+        , "background"  .= biBackground bi
+        , "alignment"   .= biAlignment bi
+        , "experience"  .= biExperience bi
+        ]
+
+instance FromJSON BasicInfoDTO where
+    parseJSON = withObject "BasicInfoDTO" $ \v -> BasicInfoDTO
+        <$> v .: "class"
+        <*> v .: "level"
+        <*> v .: "race"
+        <*> v .: "background"
+        <*> v .: "alignment"
+        <*> v .: "experience"
+
+-- | Single attribute with score, modifier, and saving throw
+data AttributeInfoDTO = AttributeInfoDTO
+    { aiName        :: String
+    , aiScore       :: Int
+    , aiModifier    :: Int
+    , aiSavingThrow :: Int
+    } deriving (Show, Eq, Generic)
+
+instance ToJSON AttributeInfoDTO where
+    toJSON ai = object
+        [ "name"        .= aiName ai
+        , "score"       .= aiScore ai
+        , "modifier"    .= aiModifier ai
+        , "savingThrow" .= aiSavingThrow ai
+        ]
+
+instance FromJSON AttributeInfoDTO where
+    parseJSON = withObject "AttributeInfoDTO" $ \v -> AttributeInfoDTO
+        <$> v .: "name"
+        <*> v .: "score"
+        <*> v .: "modifier"
+        <*> v .: "savingThrow"
+
+-- | All attributes grouped
+data AttributesDTO = AttributesDTO
+    { attrStrength     :: AttributeInfoDTO
+    , attrDexterity    :: AttributeInfoDTO
+    , attrConstitution :: AttributeInfoDTO
+    , attrIntelligence :: AttributeInfoDTO
+    , attrWisdom       :: AttributeInfoDTO
+    , attrCharisma     :: AttributeInfoDTO
+    } deriving (Show, Eq, Generic)
+
+instance ToJSON AttributesDTO where
+    toJSON a = object
+        [ "strength"     .= attrStrength a
+        , "dexterity"    .= attrDexterity a
+        , "constitution" .= attrConstitution a
+        , "intelligence" .= attrIntelligence a
+        , "wisdom"       .= attrWisdom a
+        , "charisma"     .= attrCharisma a
+        ]
+
+instance FromJSON AttributesDTO where
+    parseJSON = withObject "AttributesDTO" $ \v -> AttributesDTO
+        <$> v .: "strength"
+        <*> v .: "dexterity"
+        <*> v .: "constitution"
+        <*> v .: "intelligence"
+        <*> v .: "wisdom"
+        <*> v .: "charisma"
+
+-- | Combat statistics
+data CombatStatsDTO = CombatStatsDTO
+    { csInitiative        :: Int
+    , csCurrentHP         :: Int
+    , csMaxHP             :: Int
+    , csHitDice           :: String
+    , csArmorClass        :: Int
+    , csSpeed             :: Int
+    , csProficiencyBonus  :: Int
+    } deriving (Show, Eq, Generic)
+
+instance ToJSON CombatStatsDTO where
+    toJSON cs = object
+        [ "initiative"       .= csInitiative cs
+        , "currentHP"        .= csCurrentHP cs
+        , "maxHP"            .= csMaxHP cs
+        , "hitDice"          .= csHitDice cs
+        , "armorClass"       .= csArmorClass cs
+        , "speed"            .= csSpeed cs
+        , "proficiencyBonus" .= csProficiencyBonus cs
+        ]
+
+instance FromJSON CombatStatsDTO where
+    parseJSON = withObject "CombatStatsDTO" $ \v -> CombatStatsDTO
+        <$> v .: "initiative"
+        <*> v .: "currentHP"
+        <*> v .: "maxHP"
+        <*> v .: "hitDice"
+        <*> v .: "armorClass"
+        <*> v .: "speed"
+        <*> v .: "proficiencyBonus"
+
+-- | Single skill with name and bonus
+data SkillInfoDTO = SkillInfoDTO
+    { siName  :: String
+    , siBonus :: Int
+    } deriving (Show, Eq, Generic)
+
+instance ToJSON SkillInfoDTO where
+    toJSON si = object
+        [ "name"  .= siName si
+        , "bonus" .= siBonus si
+        ]
+
+instance FromJSON SkillInfoDTO where
+    parseJSON = withObject "SkillInfoDTO" $ \v -> SkillInfoDTO
+        <$> v .: "name"
+        <*> v .: "bonus"
+
+-- | All skills grouped by attribute
+data SkillsDTO = SkillsDTO
+    { skillAthletics      :: SkillInfoDTO
+    , skillAcrobatics     :: SkillInfoDTO
+    , skillSleightOfHand  :: SkillInfoDTO
+    , skillStealth        :: SkillInfoDTO
+    , skillArcana         :: SkillInfoDTO
+    , skillHistory        :: SkillInfoDTO
+    , skillInvestigation  :: SkillInfoDTO
+    , skillNature         :: SkillInfoDTO
+    , skillReligion       :: SkillInfoDTO
+    , skillAnimalHandling :: SkillInfoDTO
+    , skillInsight        :: SkillInfoDTO
+    , skillMedicine       :: SkillInfoDTO
+    , skillPerception     :: SkillInfoDTO
+    , skillSurvival       :: SkillInfoDTO
+    , skillDeception      :: SkillInfoDTO
+    , skillIntimidation   :: SkillInfoDTO
+    , skillPerformance    :: SkillInfoDTO
+    , skillPersuasion     :: SkillInfoDTO
+    } deriving (Show, Eq, Generic)
+
+instance ToJSON SkillsDTO where
+    toJSON s = object
+        [ "athletics"      .= skillAthletics s
+        , "acrobatics"     .= skillAcrobatics s
+        , "sleightOfHand"  .= skillSleightOfHand s
+        , "stealth"        .= skillStealth s
+        , "arcana"         .= skillArcana s
+        , "history"        .= skillHistory s
+        , "investigation"  .= skillInvestigation s
+        , "nature"         .= skillNature s
+        , "religion"       .= skillReligion s
+        , "animalHandling" .= skillAnimalHandling s
+        , "insight"        .= skillInsight s
+        , "medicine"       .= skillMedicine s
+        , "perception"     .= skillPerception s
+        , "survival"       .= skillSurvival s
+        , "deception"      .= skillDeception s
+        , "intimidation"   .= skillIntimidation s
+        , "performance"    .= skillPerformance s
+        , "persuasion"     .= skillPersuasion s
+        ]
+
+instance FromJSON SkillsDTO where
+    parseJSON = withObject "SkillsDTO" $ \v -> SkillsDTO
+        <$> v .: "athletics"
+        <*> v .: "acrobatics"
+        <*> v .: "sleightOfHand"
+        <*> v .: "stealth"
+        <*> v .: "arcana"
+        <*> v .: "history"
+        <*> v .: "investigation"
+        <*> v .: "nature"
+        <*> v .: "religion"
+        <*> v .: "animalHandling"
+        <*> v .: "insight"
+        <*> v .: "medicine"
+        <*> v .: "perception"
+        <*> v .: "survival"
+        <*> v .: "deception"
+        <*> v .: "intimidation"
+        <*> v .: "performance"
+        <*> v .: "persuasion"
+
+-- | Complete character sheet DTO
+data CharacterSheetDTO = CharacterSheetDTO
+    { sheetBasicInfo   :: BasicInfoDTO
+    , sheetAttributes  :: AttributesDTO
+    , sheetCombatStats :: CombatStatsDTO
+    , sheetSkills      :: SkillsDTO
+    , sheetInventory   :: [ItemDTO]
+    , sheetEquipment   :: [ItemDTO]
+    , sheetClues       :: [ClueId]
+    } deriving (Show, Eq, Generic)
+
+instance ToJSON CharacterSheetDTO where
+    toJSON sheet = object
+        [ "basicInfo"   .= sheetBasicInfo sheet
+        , "attributes"  .= sheetAttributes sheet
+        , "combatStats" .= sheetCombatStats sheet
+        , "skills"      .= sheetSkills sheet
+        , "inventory"   .= sheetInventory sheet
+        , "equipment"   .= sheetEquipment sheet
+        , "clues"       .= sheetClues sheet
+        ]
+
+instance FromJSON CharacterSheetDTO where
+    parseJSON = withObject "CharacterSheetDTO" $ \v -> CharacterSheetDTO
+        <$> v .: "basicInfo"
+        <*> v .: "attributes"
+        <*> v .: "combatStats"
+        <*> v .: "skills"
+        <*> v .: "inventory"
+        <*> v .: "equipment"
+        <*> v .: "clues"
+
+-- | Build character sheet from PlayerCharacter
+fromCharacterSheet :: PlayerCharacter -> CharacterSheetDTO
+fromCharacterSheet pc = CharacterSheetDTO
+    { sheetBasicInfo   = basicInfo
+    , sheetAttributes  = attributesDto
+    , sheetCombatStats = combatStats
+    , sheetSkills      = skillsDto
+    , sheetInventory   = map fromItem (pcInventory pc)
+    , sheetEquipment   = map fromItem (pcEquipment pc)
+    , sheetClues       = S.toList (pcClues pc)
+    }
+  where
+    sb = pcStatBlock pc
+    
+    -- Basic character info (fixed for this adventure)
+    basicInfo = BasicInfoDTO
+        { biClass      = "Pícaro (Rogue)"
+        , biLevel      = 2
+        , biRace       = "Humano"
+        , biBackground = "Investigador"
+        , biAlignment  = "Neutral"
+        , biExperience = 0
+        }
+    
+    -- Helper to build attribute info
+    makeAttrInfo :: String -> Attribute -> AttributeInfoDTO
+    makeAttrInfo name attr = AttributeInfoDTO
+        { aiName        = name
+        , aiScore       = getAttributeScore sb attr
+        , aiModifier    = getAttributeModifier sb attr
+        , aiSavingThrow = getSavingThrowBonus sb attr
+        }
+    
+    attributesDto = AttributesDTO
+        { attrStrength     = makeAttrInfo "Fuerza" Strength
+        , attrDexterity    = makeAttrInfo "Destreza" Dexterity
+        , attrConstitution = makeAttrInfo "Constitución" Constitution
+        , attrIntelligence = makeAttrInfo "Inteligencia" Intelligence
+        , attrWisdom       = makeAttrInfo "Sabiduría" Wisdom
+        , attrCharisma     = makeAttrInfo "Carisma" Charisma
+        }
+    
+    combatStats = CombatStatsDTO
+        { csInitiative       = initiative sb
+        , csCurrentHP        = pcCurrentHP pc
+        , csMaxHP            = pcMaxHP pc
+        , csHitDice          = "2d8"
+        , csArmorClass       = armorClass sb
+        , csSpeed            = speed sb
+        , csProficiencyBonus = proficiencyBonus sb
+        }
+    
+    -- Helper to build skill info
+    makeSkillInfo :: String -> Skill -> SkillInfoDTO
+    makeSkillInfo name skill = SkillInfoDTO
+        { siName  = name
+        , siBonus = getSkillBonus sb skill
+        }
+    
+    skillsDto = SkillsDTO
+        { skillAthletics      = makeSkillInfo "Atletismo" Athletics
+        , skillAcrobatics     = makeSkillInfo "Acrobacias" Acrobatics
+        , skillSleightOfHand  = makeSkillInfo "Juego de Manos" SleightOfHand
+        , skillStealth        = makeSkillInfo "Sigilo" Stealth
+        , skillArcana         = makeSkillInfo "Arcanismo" Arcana
+        , skillHistory        = makeSkillInfo "Historia" History
+        , skillInvestigation  = makeSkillInfo "Investigación" Investigation
+        , skillNature         = makeSkillInfo "Naturaleza" Nature
+        , skillReligion       = makeSkillInfo "Religión" Religion
+        , skillAnimalHandling = makeSkillInfo "Trato con Animales" AnimalHandling
+        , skillInsight        = makeSkillInfo "Perspicacia" Insight
+        , skillMedicine       = makeSkillInfo "Medicina" Medicine
+        , skillPerception     = makeSkillInfo "Percepción" Perception
+        , skillSurvival       = makeSkillInfo "Supervivencia" Survival
+        , skillDeception      = makeSkillInfo "Engaño" Deception
+        , skillIntimidation   = makeSkillInfo "Intimidación" Intimidation
+        , skillPerformance    = makeSkillInfo "Interpretación" Performance
+        , skillPersuasion     = makeSkillInfo "Persuasión" Persuasion
+        }

@@ -1,0 +1,42 @@
+C:\Users\JL\AppData\Local\Programs\stack\x86_64-windows\ghc-9.4.8\lib\x86_64-windows-ghc-9.4.8\rts-1.0.2\include\ghcversion.h:
+  hash: 4bc88722407a89d1efbfa9c116cd4017af6ea3ff746643032b96cef62782f5dd
+? C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\.stack-work\dist\f1a1ac53\build\rpg-bot\autogen\Paths_rpg_bot.hs
+: hash: 40062276682ef90c166533163f18552fdb5894a426864002d13bde7ee255b6e3
+? C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\.stack-work\dist\f1a1ac53\build\rpg-bot\autogen\cabal_macros.h
+: hash: 858a12527687d11f329428fa67792112523e955f20dda9cf160e99462d28c1d6
+C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\package.yaml:
+  hash: 722a9833de311c5facae9f9eeb50aace350f8dd0834b3037dbda7928d93b2cf0
+C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\rpg-bot.cabal:
+  hash: 935f29c458ec0c34e6448d6dcec089b261f354652f649889ef287870f3afaf3d
+C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\src\API\DTO.hs:
+  hash: b7f73fc2c6c07b193af86cc44112e39a55adb28f01c89f41659f84ce1cc9dbee
+C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\src\API\Routes.hs:
+  hash: 4ba0d4704d5c4412685eeb5c16071af60d38bc683ebe2ddebd275cf9f9f7bea3
+C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\src\API\Swagger.hs:
+  hash: b15976f993f92a0b06f5ff330ad38cf42eb5e88a00c943e00067679dd4bf501e
+C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\src\Application\AdventureService.hs:
+  hash: 221bc13f0b8a3fbbbfa2e8d6ece9627391308cd314eedc5e0a83ff7c62aefab5
+C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\src\Application\CharacterService.hs:
+  hash: 92e1bb85eee1685c27b513255b95590c4609e6032d00f1ec153631a3e1a78434
+C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\src\Application\CombatService.hs:
+  hash: bf871ca97ff97b33576614c7269d32fa8c95167ee1806f39ff45730a6e8dee7d
+C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\src\Application\GameService.hs:
+  hash: b6cf9bfcd88ac7f25d22951ae6bfb8d46f2a584acecd55b898fb4be1223b4c08
+C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\src\Domain\Character.hs:
+  hash: d604aad15150e83f58b22e92195dd9496e751f06b1284599f342cfb71236e9f9
+C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\src\Domain\Dice.hs:
+  hash: 0027a3487ac287a57ba93b97d93855c810ebd02caaa2a15a9ee3508b5c52044a
+C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\src\Domain\Enemy.hs:
+  hash: e25fd0850be74e76b43626ec61914288786141fce4be61dc4f7ec916dd6e55e5
+C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\src\Domain\Entry.hs:
+  hash: 561d248c84118bf12fecfbac575ea92e6693cd31931c9fef3aca5fef63dcf43d
+C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\src\Domain\StatBlock.hs:
+  hash: 08c98aa6311a9a2508b075a3ef597b59cc774240c697b02054f6b42689a98cfd
+C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\src\Domain\Types.hs:
+  hash: b511343b04dc2ef1ecbbe9d6851a560145cc2792b697c57fce190ad677a03e30
+C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\src\Infrastructure\JSON.hs:
+  hash: 9aa951ba466408e2f79041acfe211588753eed24de1f2a2e17e5213487db2b24
+C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\src\Infrastructure\Repository.hs:
+  hash: 2bd220196d61f7b1974fe010a4b8d747d8656133e5aecfe6ba38005bc78d4bf5
+C:\Users\JL\Desktop\Proyecto Declarativa\Repo\CaballeroDeLaMuerte-Backend\src\Main.hs:
+  hash: 5a099b3b31ba7f605f441c28952e7fb1f4332bf4bdd5b36abcbcbba0aff57dc7

@@ -9,11 +9,11 @@ C:\Users\Melissa Maureen\Documents\TDK\CaballeroDeLaMuerte-Backend\package.yaml:
 C:\Users\Melissa Maureen\Documents\TDK\CaballeroDeLaMuerte-Backend\rpg-bot.cabal:
   hash: 935f29c458ec0c34e6448d6dcec089b261f354652f649889ef287870f3afaf3d
 C:\Users\Melissa Maureen\Documents\TDK\CaballeroDeLaMuerte-Backend\src\API\DTO.hs:
-  hash: 1e6c8c958522a3bfc005cd00a016c29d8396c7107b76e9006ecd7980a0c939c9
+  hash: 4641d4e7aafad4a3864e8c4658839a7c59c1f9ecdd10bfa0a79bb6bf7aa4d495
 C:\Users\Melissa Maureen\Documents\TDK\CaballeroDeLaMuerte-Backend\src\API\Routes.hs:
-  hash: 44fb75c3d4c19825e7c19a338e086a514fd8cce7886140169a54fed2e4c006ed
+  hash: 4ba0d4704d5c4412685eeb5c16071af60d38bc683ebe2ddebd275cf9f9f7bea3
 C:\Users\Melissa Maureen\Documents\TDK\CaballeroDeLaMuerte-Backend\src\API\Swagger.hs:
-  hash: 36799602fe03fbb75361526b08323b21623eab37f245eb640626dc78cbe712aa
+  hash: 0deddc9d6238796754bbbddcc2e4fbede2fbdbbe6c8b4586b61b927a152754df
 C:\Users\Melissa Maureen\Documents\TDK\CaballeroDeLaMuerte-Backend\src\Application\AdventureService.hs:
   hash: 3ff94901d38bbc45b9ed72b020f817bf5acd3a60c0bc4268c186a4af342faa11
 C:\Users\Melissa Maureen\Documents\TDK\CaballeroDeLaMuerte-Backend\src\Application\CharacterService.hs:

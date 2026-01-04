@@ -37,8 +37,8 @@
         "entryDataId": 100,
         "entryDataNarrative": "Avanzas hacia adelante, más profundo en el bosque. Los árboles parecen observar tu progreso. El sendero se bifurca.",
         "entryDataOptions": [
-            {"id": 1, "description": "Avanzar con sigilo (Sigilo CD 12)", "outcome": {"type": "SkillCheck", "skill": "Stealth", "dc": 12, "success": 101, "failure": 102}},
-            {"id": 2, "description": "Buscar trampas (Percepción CD 12)", "outcome": {"type": "SkillCheck", "skill": "Perception", "dc": 12, "success": 103, "failure": 104}},
+            {"id": 1, "description": "Avanzar con sigilo (Sigilo CD 12)", "outcome": {"type": "SkillCheck", "skill": "Stealth", "dc": 12, "success": 101, "failure": 300}},
+            {"id": 2, "description": "Buscar trampas (Percepción CD 12)", "outcome": {"type": "SkillCheck", "skill": "Perception", "dc": 12, "success": 103, "failure": 315}},
             {"id": 3, "description": "Continuar sin precauciones", "outcome": {"type": "GoToEntry", "entry": 105}}
         ],
         "entryDataRules": []
@@ -49,11 +49,12 @@
     [104, {"entryDataId": 104, "entryDataNarrative": "No detectas nada sospechoso.", "entryDataOptions": [{"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 105}}], "entryDataRules": []}],
     [105, {
         "entryDataId": 105,
-        "entryDataNarrative": "El sendero se bifurca. A la izquierda hay telarañas bloqueando el paso. A la derecha ves un edificio de piedra. Cerca hay una capa verde colgando de una rama.",
+        "entryDataNarrative": "El sendero se bifurca. A la izquierda hay telarañas bloqueando el paso. A la derecha ves un edificio de piedra. Cerca hay una capa verde colgando de una rama. También notas un sendero secundario al norte.",
         "entryDataOptions": [
             {"id": 1, "description": "Ir hacia las telarañas (izquierda)", "outcome": {"type": "GoToEntry", "entry": 110}},
             {"id": 2, "description": "Ir hacia el edificio (derecha)", "outcome": {"type": "GoToEntry", "entry": 115}},
-            {"id": 3, "description": "Inspeccionar la capa", "outcome": {"type": "GoToEntry", "entry": 106}}
+            {"id": 3, "description": "Inspeccionar la capa", "outcome": {"type": "GoToEntry", "entry": 106}},
+            {"id": 4, "description": "Explorar el sendero secundario", "outcome": {"type": "GoToEntry", "entry": 305}}
         ],
         "entryDataRules": []
     }],
@@ -80,7 +81,7 @@
         "entryDataId": 111,
         "entryDataNarrative": "Las telarañas se encienden. Oyes un chirrido horrible... ¡dos ARAÑAS LOBO GIGANTES emergen y te atacan!",
         "entryDataOptions": [
-            {"id": 1, "description": "¡Combatir a las arañas!", "outcome": {"type": "StartCombat", "victory": 113, "defeat": 999}}
+            {"id": 1, "description": "¡Combatir a las arañas!", "outcome": {"type": "StartCombat", "enemies": ["ArañaLoboGigante", "ArañaLoboGigante"], "victory": 113, "defeat": 999}}
         ],
         "entryDataRules": []
     }],
@@ -104,7 +105,7 @@
         "entryDataId": 114,
         "entryDataNarrative": "¡Una araña te muerde! Sufres 1d6 de daño. ¡Combate!",
         "entryDataOptions": [
-            {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "victory": 113, "defeat": 999}}
+            {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["ArañaLoboGigante"], "victory": 113, "defeat": 999}}
         ],
         "entryDataRules": []
     }],
@@ -159,11 +160,12 @@
     [124, {"entryDataId": 124, "entryDataNarrative": "Los dardos te alcanzan. Sufres 2d4 de daño. La puerta está abierta.", "entryDataOptions": [{"id": 1, "description": "Entrar", "outcome": {"type": "GoToEntry", "entry": 140}}, {"id": 2, "description": "Continuar al norte", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
     [125, {
         "entryDataId": 125,
-        "entryDataNarrative": "Una intersección. Un letrero indica:\n- Norte: Pastizales\n- Oeste: Cementerio\n- Este: Cueva",
+        "entryDataNarrative": "Una intersección. Un letrero indica:\n- Norte: Pastizales\n- Oeste: Cementerio\n- Este: Cueva\n\nHay dos zonas que parecen buenas para acampar.",
         "entryDataOptions": [
             {"id": 1, "description": "Norte - Pastizales", "outcome": {"type": "GoToEntry", "entry": 150}},
             {"id": 2, "description": "Oeste - Cementerio", "outcome": {"type": "GoToEntry", "entry": 160}},
-            {"id": 3, "description": "Este - Cueva", "outcome": {"type": "GoToEntry", "entry": 170}}
+            {"id": 3, "description": "Este - Cueva", "outcome": {"type": "GoToEntry", "entry": 170}},
+            {"id": 4, "description": "Acampar y descansar", "outcome": {"type": "GoToEntry", "entry": 330}}
         ],
         "entryDataRules": []
     }],
@@ -204,9 +206,9 @@
         "entryDataRules": []
     }],
     [161, {"entryDataId": 161, "entryDataNarrative": "Te mueves silenciosamente.", "entryDataOptions": [{"id": 1, "description": "Ir a la cripta", "outcome": {"type": "GoToEntry", "entry": 165}}], "entryDataRules": []}],
-    [162, {"entryDataId": 162, "entryDataNarrative": "Algo se mueve bajo la tierra... ¡te han detectado!", "entryDataOptions": [{"id": 1, "description": "Ir a la cripta", "outcome": {"type": "GoToEntry", "entry": 165}}, {"id": 2, "description": "Huir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
+    [162, {"entryDataId": 162, "entryDataNarrative": "Algo se mueve bajo la tierra... ¡te han detectado! El suelo de una tumba se agrieta.", "entryDataOptions": [{"id": 1, "description": "Ir a la cripta rápidamente", "outcome": {"type": "GoToEntry", "entry": 320}}, {"id": 2, "description": "Huir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
     [163, {"entryDataId": 163, "entryDataNarrative": "Notas una tumba con tierra fresca. La evitas.", "entryDataOptions": [{"id": 1, "description": "Ir a la cripta", "outcome": {"type": "GoToEntry", "entry": 165}}], "entryDataRules": []}],
-    [164, {"entryDataId": 164, "entryDataNarrative": "No detectas nada.", "entryDataOptions": [{"id": 1, "description": "Ir a la cripta", "outcome": {"type": "GoToEntry", "entry": 165}}], "entryDataRules": []}],
+    [164, {"entryDataId": 164, "entryDataNarrative": "No detectas nada. Avanzas confiado hacia la cripta cuando... ¡el suelo cede!", "entryDataOptions": [{"id": 1, "description": "¡Saltar! (Salvación DES CD 16)", "outcome": {"type": "SaveCheck", "attribute": "Dexterity", "dc": 16, "success": 165, "failure": 325}}], "entryDataRules": []}],
     [165, {
         "entryDataId": 165,
         "entryDataNarrative": "La cripta tiene una placa: \"La Familia de-\" (el nombre está destruido). Las puertas están entreabiertas.",
@@ -221,7 +223,8 @@
     [170, {"entryDataId": 170, "entryDataNarrative": "Una cueva al otro lado de un río.", "entryDataOptions": [{"id": 1, "description": "Vadear (Atletismo CD 12)", "outcome": {"type": "SkillCheck", "skill": "Athletics", "dc": 12, "success": 171, "failure": 172}}, {"id": 2, "description": "Volver", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
     [171, {"entryDataId": 171, "entryDataNarrative": "Cruzas el río.", "entryDataOptions": [{"id": 1, "description": "Entrar a la cueva", "outcome": {"type": "GoToEntry", "entry": 175}}], "entryDataRules": []}],
     [172, {"entryDataId": 172, "entryDataNarrative": "La corriente te arrastra. Pierdes 1 PV y tus provisiones.", "entryDataOptions": [{"id": 1, "description": "Entrar a la cueva", "outcome": {"type": "GoToEntry", "entry": 175}}], "entryDataRules": []}],
-    [175, {"entryDataId": 175, "entryDataNarrative": "Dentro de la cueva hay huesos y cadáveres. En la pared dice: \"NORTE\". Encuentras un medallón: \"A Fastus Brant, Capitán de la Guardia de Orlbar\".", "entryDataOptions": [{"id": 1, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
+    [175, {"entryDataId": 175, "entryDataNarrative": "Dentro de la cueva hay huesos y cadáveres. En la pared dice: \"NORTE\". Encuentras un medallón: \"A Fastus Brant, Capitán de la Guardia de Orlbar\".", "entryDataOptions": [{"id": 1, "description": "Buscar tesoros (Investigación CD 12)", "outcome": {"type": "SkillCheck", "skill": "Investigation", "dc": 12, "success": 176, "failure": 310}}, {"id": 2, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
+    [176, {"entryDataId": 176, "entryDataNarrative": "Encuentras 17 pp y joyas por valor de 10 po entre los restos. También un juguete de soldado de madera de un niño... perturbador.", "entryDataOptions": [{"id": 1, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
     [180, {
         "entryDataId": 180,
         "entryDataNarrative": "Dentro de la cripta hay cuatro ataúdes. Al fondo, un pasillo continúa.",
@@ -256,14 +259,14 @@
         "entryDataId": 187,
         "entryDataNarrative": "El Caballero de la Muerte te ve. \"¡ASÍ QUE! ¡El gran héroe! ¡Prepárate para morir, necio!\"",
         "entryDataOptions": [
-            {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "victory": 200, "defeat": 210}}
+            {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["CaballeroDeLaMuerte"], "victory": 200, "defeat": 210}}
         ],
         "entryDataRules": []
     }],
-    [190, {"entryDataId": 190, "entryDataNarrative": "Tu ataque golpea al caballero. \"¡Aaargh! ¿Quién se atreve?\" Se levanta furioso.", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "victory": 200, "defeat": 210}}], "entryDataRules": []}],
-    [191, {"entryDataId": 191, "entryDataNarrative": "Te lanzas al ataque.", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "victory": 200, "defeat": 210}}], "entryDataRules": []}],
-    [192, {"entryDataId": 192, "entryDataNarrative": "\"¿Quién eres tú para darme órdenes? ¡Prepárate para morir!\"", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "victory": 200, "defeat": 210}}], "entryDataRules": []}],
-    [193, {"entryDataId": 193, "entryDataNarrative": "Preparas la Estaca del Árbol Rojo. Si vences, podrás destruirlo permanentemente.", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "victory": 201, "defeat": 210}}], "entryDataRules": []}],
+    [190, {"entryDataId": 190, "entryDataNarrative": "Tu ataque golpea al caballero. \"¡Aaargh! ¿Quién se atreve?\" Se levanta furioso.", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["CaballeroDeLaMuerte"], "victory": 200, "defeat": 210}}], "entryDataRules": []}],
+    [191, {"entryDataId": 191, "entryDataNarrative": "Te lanzas al ataque.", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["CaballeroDeLaMuerte"], "victory": 200, "defeat": 210}}], "entryDataRules": []}],
+    [192, {"entryDataId": 192, "entryDataNarrative": "\"¿Quién eres tú para darme órdenes? ¡Prepárate para morir!\"", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["CaballeroDeLaMuerte"], "victory": 200, "defeat": 210}}], "entryDataRules": []}],
+    [193, {"entryDataId": 193, "entryDataNarrative": "Preparas la Estaca del Árbol Rojo. Si vences, podrás destruirlo permanentemente.", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["CaballeroDeLaMuerte"], "victory": 201, "defeat": 210}}], "entryDataRules": []}],
     [200, {
         "entryDataId": 200,
         "entryDataNarrative": "¡El Caballero de la Muerte cae! Añade 200 XP.\n\nPero su mano se contrae... ¡no está destruido! Sin la estaca, debes huir con Darek.",
@@ -306,6 +309,150 @@
         "entryDataId": 240,
         "entryDataNarrative": "BOTÍN DE AVENTURA\n\nHas completado \"El Escudero del Caballero de la Muerte\".\n\nTu personaje avanza al NIVEL 3.\n\n¡Gracias por jugar!",
         "entryDataOptions": [],
+        "entryDataRules": []
+    }],
+    [300, {
+        "entryDataId": 300,
+        "entryDataNarrative": "¡Ves movimiento adelante! Tres figuras pequeñas emergen de la maleza: ¡KOBOLDS! Te ven y gritan, avanzando rápidamente hacia ti con dagas y bolas de fuego.",
+        "entryDataOptions": [
+            {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["Kobold", "Kobold", "KoboldMago"], "victory": 301, "defeat": 999}}
+        ],
+        "entryDataRules": []
+    }],
+    [301, {
+        "entryDataId": 301,
+        "entryDataNarrative": "¡Los kobolds yacen derrotados! Añade 75 XP.\n\nUna búsqueda rápida revela dos dagas y una bolsa con 120 po. ¡Estos kobolds han estado ocupados!",
+        "entryDataOptions": [
+            {"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 125}}
+        ],
+        "entryDataRules": []
+    }],
+    [305, {
+        "entryDataId": 305,
+        "entryDataNarrative": "¡Algo cae sobre tu cabeza: una red! Oyes un chillido y a través de la malla ves tres GOBLINS acercándose con armas levantadas.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Escapar de la red (Salvación DES CD 17)", "outcome": {"type": "SaveCheck", "attribute": "Dexterity", "dc": 17, "success": 306, "failure": 307}}
+        ],
+        "entryDataRules": []
+    }],
+    [306, {
+        "entryDataId": 306,
+        "entryDataNarrative": "¡Te liberas de la red! Los goblins retroceden sorprendidos.",
+        "entryDataOptions": [
+            {"id": 1, "description": "¡Atacar!", "outcome": {"type": "StartCombat", "enemies": ["Goblin", "Goblin", "Goblin"], "victory": 308, "defeat": 999}}
+        ],
+        "entryDataRules": []
+    }],
+    [307, {
+        "entryDataId": 307,
+        "entryDataNarrative": "¡Estás atrapado en la red! Los goblins atacan con ventaja en la primera ronda.",
+        "entryDataOptions": [
+            {"id": 1, "description": "¡Combatir desde la red!", "outcome": {"type": "StartCombat", "enemies": ["Goblin", "Goblin", "Goblin"], "victory": 308, "defeat": 999}}
+        ],
+        "entryDataRules": []
+    }],
+    [308, {
+        "entryDataId": 308,
+        "entryDataNarrative": "¡Los goblins yacen derrotados! Añade 150 XP.\n\nEntre sus pertenencias encuentras sus armas y un anillo humano en una cadena. Emana una potencia extraña.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 125}}
+        ],
+        "entryDataRules": []
+    }],
+    [310, {
+        "entryDataId": 310,
+        "entryDataNarrative": "Mueves tu mano para tocar algo y... ¡algo te muerde! Un CIEMPIÉS GIGANTE emerge de las sombras, avanzando hacia ti con múltiples patas.",
+        "entryDataOptions": [
+            {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["CiempiésGigante"], "victory": 311, "defeat": 999}}
+        ],
+        "entryDataRules": []
+    }],
+    [311, {
+        "entryDataId": 311,
+        "entryDataNarrative": "¡El ciempiés está derrotado! Añade 50 XP.\n\nAplastas al repugnante bicho y continúas.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 125}}
+        ],
+        "entryDataRules": []
+    }],
+    [315, {
+        "entryDataId": 315,
+        "entryDataNarrative": "¡El suelo cede bajo tus pies! Caes 10 pies en un pozo profundo. Te levantas tambaleante.\n\nUna figura encapuchada aparece arriba. \"¡Ja! ¡Otra víctima para Kiaransalee!\"",
+        "entryDataOptions": [
+            {"id": 1, "description": "Escapar (Atletismo CD 15)", "outcome": {"type": "SkillCheck", "skill": "Athletics", "dc": 15, "success": 316, "failure": 317}}
+        ],
+        "entryDataRules": []
+    }],
+    [316, {
+        "entryDataId": 316,
+        "entryDataNarrative": "¡Logras escalar y salir! La CULTISTA te mira furiosa.",
+        "entryDataOptions": [
+            {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["Cultista"], "victory": 318, "defeat": 999}}
+        ],
+        "entryDataRules": []
+    }],
+    [317, {
+        "entryDataId": 317,
+        "entryDataNarrative": "No puedes escalar. La cultista carga su ballesta y dispara desde arriba.",
+        "entryDataOptions": [
+            {"id": 1, "description": "¡Combatir desde el pozo!", "outcome": {"type": "StartCombat", "enemies": ["Cultista"], "victory": 318, "defeat": 999}}
+        ],
+        "entryDataRules": []
+    }],
+    [318, {
+        "entryDataId": 318,
+        "entryDataNarrative": "¡La cultista cae! Añade 25 XP.\n\nLleva una ballesta de mano, 18 virotes y una cimitarra. También encuentras información sobre \"la Orden de Kiaransalee\".",
+        "entryDataOptions": [
+            {"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 125}}
+        ],
+        "entryDataRules": []
+    }],
+    [320, {
+        "entryDataId": 320,
+        "entryDataNarrative": "Una espesa niebla gris se extiende por el sendero. Del centro emerge una figura: ¡un ESQUELETO con armadura! Emite un ruido espantoso y avanza hacia ti con su espada.",
+        "entryDataOptions": [
+            {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["Esqueleto"], "victory": 321, "defeat": 999}}
+        ],
+        "entryDataRules": []
+    }],
+    [321, {
+        "entryDataId": 321,
+        "entryDataNarrative": "¡El esqueleto se desmorona! Añade 50 XP.\n\nLa niebla se disipa. El camino está despejado.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 165}}
+        ],
+        "entryDataRules": []
+    }],
+    [325, {
+        "entryDataId": 325,
+        "entryDataNarrative": "El suelo de una tumba cede bajo tus pies. Caes brevemente y sientes una mano fría agarrándote. ¡Un ZOMBIE te ataca desde la tumba!",
+        "entryDataOptions": [
+            {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["Zombie"], "victory": 326, "defeat": 999}}
+        ],
+        "entryDataRules": []
+    }],
+    [326, {
+        "entryDataId": 326,
+        "entryDataNarrative": "¡El zombie cae! Añade 50 XP.\n\nTe sacudes el polvo de la tumba y continúas hacia la cripta.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Ir a la cripta", "outcome": {"type": "GoToEntry", "entry": 165}}
+        ],
+        "entryDataRules": []
+    }],
+    [330, {
+        "entryDataId": 330,
+        "entryDataNarrative": "Despiertas en la madrugada con una sensación extraña en el cuello. ¡Un MURCIÉLAGO DEL BOSQUE se ha pegado a ti! La horrible criatura chilla mientras la apartas.",
+        "entryDataOptions": [
+            {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["MurciélagoDelBosque"], "victory": 331, "defeat": 999}}
+        ],
+        "entryDataRules": []
+    }],
+    [331, {
+        "entryDataId": 331,
+        "entryDataNarrative": "¡El murciélago cae! Añade 25 XP.\n\nTu sueño está arruinado, pero al menos sobreviviste. El amanecer se acerca.",
+        "entryDataOptions": [
+            {"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 125}}
+        ],
         "entryDataRules": []
     }],
     [999, {

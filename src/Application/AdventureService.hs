@@ -9,12 +9,12 @@ import Application.GameService
 
 -- | Result of selecting an option
 data OptionResult
-    = NavigatedTo EntryId                    -- Direct navigation
-    | CheckPassed Skill Int Int EntryId      -- Skill, roll, DC, destination
-    | CheckFailed Skill Int Int EntryId      -- Skill, roll, DC, destination
-    | SavePassed Attribute Int Int EntryId   -- Attr, roll, DC, destination
-    | SaveFailed Attribute Int Int EntryId   -- Attr, roll, DC, destination
-    | CombatStarted EntryId EntryId          -- Victory entry, defeat entry
+    = NavigatedTo EntryId                        -- Direct navigation
+    | CheckPassed Skill Int Int EntryId          -- Skill, roll, DC, destination
+    | CheckFailed Skill Int Int EntryId          -- Skill, roll, DC, destination
+    | SavePassed Attribute Int Int EntryId       -- Attr, roll, DC, destination
+    | SaveFailed Attribute Int Int EntryId       -- Attr, roll, DC, destination
+    | CombatStarted [String] EntryId EntryId     -- Enemy names, victory entry, defeat entry
     | OptionNotFound
     | EntryNotFound
     deriving (Show, Eq)
@@ -51,8 +51,8 @@ processOutcome outcome state = case outcome of
             then pure (SavePassed attr total dc successEntry, goToEntry successEntry state)
             else pure (SaveFailed attr total dc failEntry, goToEntry failEntry state)
 
-    StartCombat victoryEntry defeatEntry ->
-        pure (CombatStarted victoryEntry defeatEntry, state)
+    StartCombat enemyNames victoryEntry defeatEntry ->
+        pure (CombatStarted enemyNames victoryEntry defeatEntry, state)
 
 -- | Get option by ID from current entry
 getOption :: Int -> AppState -> Maybe Option

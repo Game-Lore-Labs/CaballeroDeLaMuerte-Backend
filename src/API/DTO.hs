@@ -174,6 +174,26 @@ data CombatAttackRequest = CombatAttackRequest
 instance ToJSON CombatAttackRequest
 instance FromJSON CombatAttackRequest
 
+-- | Request to start combat with specific enemies
+data StartCombatRequest = StartCombatRequest
+    { startCombatEnemies :: [String]  -- Enemy names to spawn
+    , startCombatVictory :: EntryId   -- Entry to go on victory
+    , startCombatDefeat  :: EntryId   -- Entry to go on defeat
+    } deriving (Show, Eq, Generic)
+
+instance ToJSON StartCombatRequest where
+    toJSON r = object
+        [ "enemies" .= startCombatEnemies r
+        , "victoryEntry" .= startCombatVictory r
+        , "defeatEntry" .= startCombatDefeat r
+        ]
+
+instance FromJSON StartCombatRequest where
+    parseJSON = withObject "StartCombatRequest" $ \v -> StartCombatRequest
+        <$> v .: "enemies"
+        <*> v .: "victoryEntry"
+        <*> v .: "defeatEntry"
+
 -- Response DTOs
 
 data OptionResultDTO = OptionResultDTO
@@ -323,6 +343,23 @@ instance FromJSON CombatActionDTO where
         <*> v .:? "actor"
         <*> v .:? "damage"
         <*> v .:? "roll"
+
+-- | Result of a combat turn including actions and updated status
+data CombatTurnResultDTO = CombatTurnResultDTO
+    { turnActions :: [CombatActionDTO]
+    , turnStatus  :: CombatStatusDTO
+    } deriving (Show, Eq, Generic)
+
+instance ToJSON CombatTurnResultDTO where
+    toJSON t = object
+        [ "actions" .= turnActions t
+        , "status"  .= turnStatus t
+        ]
+
+instance FromJSON CombatTurnResultDTO where
+    parseJSON = withObject "CombatTurnResultDTO" $ \v -> CombatTurnResultDTO
+        <$> v .: "actions"
+        <*> v .: "status"
 
 -- Game State DTO
 

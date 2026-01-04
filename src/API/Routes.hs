@@ -10,6 +10,9 @@ import Data.Aeson (FromJSON)
 import qualified Data.Text.Lazy as TL
 import qualified Data.Text.Lazy.Encoding as TLE
 
+import qualified Data.Map as M
+import Data.Maybe (mapMaybe)
+
 import Domain.Types
 import Domain.Dice
 import Domain.StatBlock
@@ -20,11 +23,13 @@ import Application.GameService
 import Application.AdventureService
 import Application.CombatService
 import Application.CharacterService
+import Infrastructure.Repository (getEnemy)
 import qualified API.DTO as DTO
-import API.DTO (AbilityCheckRequest(..), SavingThrowRequest(..), CombatAttackRequest(..), 
-                DiceRollRequest(..), SelectOptionRequest(..), okResponse, errResponse,
+import API.DTO (AbilityCheckRequest(..), SavingThrowRequest(..), CombatAttackRequest(..),
+                DiceRollRequest(..), SelectOptionRequest(..), StartCombatRequest(..),
+                okResponse, errResponse,
                 GameStateDTO(..), EntryDTO(..), OptionResultDTO(..), CheckResultDTO(..),
-                CombatStatusDTO(..), CombatActionDTO(..), DiceRollDTO(..),
+                CombatStatusDTO(..), CombatActionDTO(..), CombatTurnResultDTO(..), DiceRollDTO(..),
                 fromCharacter, fromCharacterSheet, fromItem, fromOption, fromEnemy)
 import API.Swagger
 
@@ -146,16 +151,43 @@ routes stateRef config = do
         req <- parseBody :: ActionM SelectOptionRequest
         (result, newState) <- liftIO $ selectOption (selectOptionId req) appState
         updateAppState stateRef newState
-        let dto = case result of
-                NavigatedTo eid -> OptionResultDTO "navigated" Nothing Nothing (Just eid) Nothing Nothing
-                CheckPassed skill roll dc eid -> OptionResultDTO "check_passed" (Just roll) (Just dc) (Just eid) (Just $ show skill) Nothing
-                CheckFailed skill roll dc eid -> OptionResultDTO "check_failed" (Just roll) (Just dc) (Just eid) (Just $ show skill) Nothing
-                SavePassed attr roll dc eid -> OptionResultDTO "save_passed" (Just roll) (Just dc) (Just eid) Nothing (Just $ show attr)
-                SaveFailed attr roll dc eid -> OptionResultDTO "save_failed" (Just roll) (Just dc) (Just eid) Nothing (Just $ show attr)
-                CombatStarted _ _ -> OptionResultDTO "combat_started" Nothing Nothing Nothing Nothing Nothing
-                OptionNotFound -> OptionResultDTO "error" Nothing Nothing Nothing Nothing Nothing
-                EntryNotFound -> OptionResultDTO "error" Nothing Nothing Nothing Nothing Nothing
-        json $ okResponse dto
+        case result of
+            NavigatedTo eid ->
+                json $ okResponse $ OptionResultDTO "navigated" Nothing Nothing (Just eid) Nothing Nothing
+            CheckPassed skill roll dc eid ->
+                json $ okResponse $ OptionResultDTO "check_passed" (Just roll) (Just dc) (Just eid) (Just $ show skill) Nothing
+            CheckFailed skill roll dc eid ->
+                json $ okResponse $ OptionResultDTO "check_failed" (Just roll) (Just dc) (Just eid) (Just $ show skill) Nothing
+            SavePassed attr roll dc eid ->
+                json $ okResponse $ OptionResultDTO "save_passed" (Just roll) (Just dc) (Just eid) Nothing (Just $ show attr)
+            SaveFailed attr roll dc eid ->
+                json $ okResponse $ OptionResultDTO "save_failed" (Just roll) (Just dc) (Just eid) Nothing (Just $ show attr)
+            CombatStarted enemyNames victoryEid defeatEid -> do
+                -- Look up enemies from the enemy store
+                let enemyStore = appEnemies newState
+                    enemies = mapMaybe (getEnemy enemyStore) enemyNames
+                if null enemies
+                    then do
+                        status badRequest400
+                        json (errResponse "No valid enemies found for combat" :: DTO.ApiResponse String)
+                    else do
+                        -- Initialize combat state
+                        let player = getPlayer newState
+                            combat = startCombat player enemies victoryEid defeatEid
+                        updateCombatState stateRef (Just combat)
+                        -- Return combat status
+                        let dto = CombatStatusDTO
+                                { combatStatusState   = show $ getCombatStatus combat
+                                , combatStatusPlayer  = fromCharacter (combatPlayer combat)
+                                , combatStatusEnemies = map fromEnemy (combatEnemies combat)
+                                }
+                        json $ okResponse dto
+            OptionNotFound -> do
+                status badRequest400
+                json (errResponse "Option not found" :: DTO.ApiResponse String)
+            EntryNotFound -> do
+                status badRequest400
+                json (errResponse "Entry not found" :: DTO.ApiResponse String)
 
     -- Character
 
@@ -209,20 +241,32 @@ routes stateRef config = do
 
     post "/combat/start" $ do
         appState <- requireAppState stateRef
-        -- For now, combat is started via entry options
-        -- This endpoint expects enemies to be set up already
+        req <- parseBody :: ActionM StartCombatRequest
+        -- Check if already in combat
         serverState <- liftIO $ readIORef stateRef
         case serverCombatState serverState of
-            Just combat -> do
-                let dto = CombatStatusDTO
-                        { combatStatusState   = show $ getCombatStatus combat
-                        , combatStatusPlayer  = fromCharacter (combatPlayer combat)
-                        , combatStatusEnemies = map fromEnemy (combatEnemies combat)
-                        }
-                json $ okResponse dto
-            Nothing -> do
+            Just _ -> do
                 status badRequest400
-                json (errResponse "No combat initialized" :: DTO.ApiResponse String)
+                json (errResponse "Already in combat. End current combat first." :: DTO.ApiResponse String)
+            Nothing -> do
+                -- Look up enemies from the enemy store
+                let enemyStore = appEnemies appState
+                    enemies = mapMaybe (getEnemy enemyStore) (startCombatEnemies req)
+                if null enemies
+                    then do
+                        status badRequest400
+                        json (errResponse "No valid enemies found" :: DTO.ApiResponse String)
+                    else do
+                        -- Initialize combat state
+                        let player = getPlayer appState
+                            combat = startCombat player enemies (startCombatVictory req) (startCombatDefeat req)
+                        updateCombatState stateRef (Just combat)
+                        let dto = CombatStatusDTO
+                                { combatStatusState   = show $ getCombatStatus combat
+                                , combatStatusPlayer  = fromCharacter (combatPlayer combat)
+                                , combatStatusEnemies = map fromEnemy (combatEnemies combat)
+                                }
+                        json $ okResponse dto
 
     get "/combat/status" $ do
         combat <- requireCombatState stateRef
@@ -246,24 +290,37 @@ routes stateRef config = do
                 let weapon = weaponList !! attackWeaponIndex req
                 (result, newCombat) <- liftIO $ playerAttack (attackTargetIndex req) weapon combat
                 updateCombatState stateRef (Just newCombat)
-                let dto = case result of
+                let actionDto = case result of
                         PlayerHit dmg -> CombatActionDTO "player_hit" Nothing (Just dmg) Nothing
                         PlayerMiss roll -> CombatActionDTO "player_miss" Nothing Nothing (Just roll)
                         EnemyDefeated name -> CombatActionDTO "enemy_defeated" (Just name) Nothing Nothing
+                        CombatVictory -> CombatActionDTO "combat_victory" Nothing Nothing Nothing
                         _ -> CombatActionDTO "unknown" Nothing Nothing Nothing
-                json $ okResponse dto
+                    statusDto = CombatStatusDTO
+                        { combatStatusState   = show $ getCombatStatus newCombat
+                        , combatStatusPlayer  = fromCharacter (combatPlayer newCombat)
+                        , combatStatusEnemies = map fromEnemy (getAliveEnemies newCombat)
+                        }
+                    resultDto = CombatTurnResultDTO [actionDto] statusDto
+                json $ okResponse resultDto
 
     post "/combat/enemy-turn" $ do
         combat <- requireCombatState stateRef
         (results, newCombat) <- liftIO $ allEnemiesAttack combat
         updateCombatState stateRef (Just newCombat)
-        let dtos = map toActionDTO results
+        let actionDtos = map toActionDTO results
             toActionDTO r = case r of
                 EnemyHit name dmg -> CombatActionDTO "enemy_hit" (Just name) (Just dmg) Nothing
                 EnemyMiss name roll -> CombatActionDTO "enemy_miss" (Just name) Nothing (Just roll)
                 PlayerDefeated -> CombatActionDTO "player_defeated" Nothing Nothing Nothing
                 _ -> CombatActionDTO "unknown" Nothing Nothing Nothing
-        json $ okResponse dtos
+            statusDto = CombatStatusDTO
+                { combatStatusState   = show $ getCombatStatus newCombat
+                , combatStatusPlayer  = fromCharacter (combatPlayer newCombat)
+                , combatStatusEnemies = map fromEnemy (getAliveEnemies newCombat)
+                }
+            resultDto = CombatTurnResultDTO actionDtos statusDto
+        json $ okResponse resultDto
 
     post "/combat/end" $ do
         combat <- requireCombatState stateRef

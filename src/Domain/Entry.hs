@@ -15,10 +15,10 @@ type Condition = GameState -> Bool
 
 -- | Possible outcomes when selecting an option
 data OptionOutcome
-    = GoToEntry EntryId                    -- Navigate to another entry
-    | SkillCheck Skill Int EntryId EntryId -- Check skill DC, success entry, failure entry
-    | SaveCheck Attribute Int EntryId EntryId -- Saving throw DC, success entry, failure entry
-    | StartCombat EntryId EntryId          -- Combat, victory entry, defeat entry
+    = GoToEntry EntryId                        -- Navigate to another entry
+    | SkillCheck Skill Int EntryId EntryId     -- Check skill DC, success entry, failure entry
+    | SaveCheck Attribute Int EntryId EntryId  -- Saving throw DC, success entry, failure entry
+    | StartCombat [String] EntryId EntryId     -- Enemy names, victory entry, defeat entry
     deriving (Show, Eq)
 
 -- | An option available to the player

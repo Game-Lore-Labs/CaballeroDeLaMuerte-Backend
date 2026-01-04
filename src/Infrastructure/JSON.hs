@@ -238,8 +238,9 @@ instance ToJSON OptionOutcome where
         , "success"   .= success
         , "failure"   .= failure
         ]
-    toJSON (StartCombat victory defeat) = object
+    toJSON (StartCombat enemies victory defeat) = object
         [ "type"    .= ("StartCombat" :: String)
+        , "enemies" .= enemies
         , "victory" .= victory
         , "defeat"  .= defeat
         ]
@@ -251,7 +252,7 @@ instance FromJSON OptionOutcome where
             "GoToEntry"   -> GoToEntry <$> v .: "entry"
             "SkillCheck"  -> SkillCheck <$> v .: "skill" <*> v .: "dc" <*> v .: "success" <*> v .: "failure"
             "SaveCheck"   -> SaveCheck <$> v .: "attribute" <*> v .: "dc" <*> v .: "success" <*> v .: "failure"
-            "StartCombat" -> StartCombat <$> v .: "victory" <*> v .: "defeat"
+            "StartCombat" -> StartCombat <$> v .: "enemies" <*> v .: "victory" <*> v .: "defeat"
             _             -> fail "Invalid OptionOutcome type"
 
 -- Option JSON instances

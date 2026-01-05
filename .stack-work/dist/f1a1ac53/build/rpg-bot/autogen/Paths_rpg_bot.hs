@@ -42,12 +42,12 @@ getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: 
 
 
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
-bindir     = "C:\\Users\\JL\\Desktop\\Proyecto Declarativa\\Repo\\CaballeroDeLaMuerte-Backend\\.stack-work\\install\\0d0629c2\\bin"
-libdir     = "C:\\Users\\JL\\Desktop\\Proyecto Declarativa\\Repo\\CaballeroDeLaMuerte-Backend\\.stack-work\\install\\0d0629c2\\lib\\x86_64-windows-ghc-9.4.8\\rpg-bot-1.0.0-5gYd5fIFrTNKjvDD1jzyGp-rpg-bot"
-dynlibdir  = "C:\\Users\\JL\\Desktop\\Proyecto Declarativa\\Repo\\CaballeroDeLaMuerte-Backend\\.stack-work\\install\\0d0629c2\\lib\\x86_64-windows-ghc-9.4.8"
-datadir    = "C:\\Users\\JL\\Desktop\\Proyecto Declarativa\\Repo\\CaballeroDeLaMuerte-Backend\\.stack-work\\install\\0d0629c2\\share\\x86_64-windows-ghc-9.4.8\\rpg-bot-1.0.0"
-libexecdir = "C:\\Users\\JL\\Desktop\\Proyecto Declarativa\\Repo\\CaballeroDeLaMuerte-Backend\\.stack-work\\install\\0d0629c2\\libexec\\x86_64-windows-ghc-9.4.8\\rpg-bot-1.0.0"
-sysconfdir = "C:\\Users\\JL\\Desktop\\Proyecto Declarativa\\Repo\\CaballeroDeLaMuerte-Backend\\.stack-work\\install\\0d0629c2\\etc"
+bindir     = "C:\\Users\\Melissa Maureen\\Documents\\TDK\\CaballeroDeLaMuerte-Backend\\.stack-work\\install\\746bae1e\\bin"
+libdir     = "C:\\Users\\Melissa Maureen\\Documents\\TDK\\CaballeroDeLaMuerte-Backend\\.stack-work\\install\\746bae1e\\lib\\x86_64-windows-ghc-9.4.8\\rpg-bot-1.0.0-5gYd5fIFrTNKjvDD1jzyGp-rpg-bot"
+dynlibdir  = "C:\\Users\\Melissa Maureen\\Documents\\TDK\\CaballeroDeLaMuerte-Backend\\.stack-work\\install\\746bae1e\\lib\\x86_64-windows-ghc-9.4.8"
+datadir    = "C:\\Users\\Melissa Maureen\\Documents\\TDK\\CaballeroDeLaMuerte-Backend\\.stack-work\\install\\746bae1e\\share\\x86_64-windows-ghc-9.4.8\\rpg-bot-1.0.0"
+libexecdir = "C:\\Users\\Melissa Maureen\\Documents\\TDK\\CaballeroDeLaMuerte-Backend\\.stack-work\\install\\746bae1e\\libexec\\x86_64-windows-ghc-9.4.8\\rpg-bot-1.0.0"
+sysconfdir = "C:\\Users\\Melissa Maureen\\Documents\\TDK\\CaballeroDeLaMuerte-Backend\\.stack-work\\install\\746bae1e\\etc"
 
 getBinDir     = catchIO (getEnv "rpg_bot_bindir")     (\_ -> return bindir)
 getLibDir     = catchIO (getEnv "rpg_bot_libdir")     (\_ -> return libdir)

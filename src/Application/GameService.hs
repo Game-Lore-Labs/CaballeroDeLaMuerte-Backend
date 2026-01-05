@@ -10,17 +10,19 @@ import Infrastructure.Repository
 
 -- | Application configuration paths
 data AppConfig = AppConfig
-    { configSavePath    :: FilePath
-    , configEntriesPath :: FilePath
-    , configEnemiesPath :: FilePath
+    { configSavePath        :: FilePath
+    , configInitialStatePath :: FilePath
+    , configEntriesPath     :: FilePath
+    , configEnemiesPath     :: FilePath
     } deriving (Show, Eq)
 
 -- | Default configuration
 defaultConfig :: AppConfig
 defaultConfig = AppConfig
-    { configSavePath    = "data/save.json"
-    , configEntriesPath = "data/entries.json"
-    , configEnemiesPath = "data/enemies.json"
+    { configSavePath        = "data/save.json"
+    , configInitialStatePath = "data/initial-state.json"
+    , configEntriesPath     = "data/entries.json"
+    , configEnemiesPath     = "data/enemies.json"
     }
 
 -- | Application state holding loaded data
@@ -60,6 +62,18 @@ saveGameState config state = fromRepo <$> saveGame (configSavePath config) (appG
 -- | Load game state (entries and enemies must be loaded separately)
 loadGameState :: AppConfig -> IO (ServiceResult GameState)
 loadGameState config = fromRepo <$> loadGame (configSavePath config)
+
+-- | Load initial game state
+loadInitialGameState :: AppConfig -> IO (ServiceResult GameState)
+loadInitialGameState config = fromRepo <$> loadGame (configInitialStatePath config)
+
+-- | Reset game to initial state (copy initial-state.json to save.json)
+resetGameToInitialState :: AppConfig -> IO (ServiceResult ())
+resetGameToInitialState config = do
+    initialResult <- loadInitialGameState config
+    case initialResult of
+        ServiceErr e -> pure $ ServiceErr $ "Failed to load initial state: " ++ e
+        ServiceOk initialState -> fromRepo <$> saveGame (configSavePath config) initialState
 
 -- | Load all entries from file
 loadAllEntries :: AppConfig -> IO (ServiceResult EntryStore)

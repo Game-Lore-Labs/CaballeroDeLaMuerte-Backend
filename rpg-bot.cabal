@@ -18,9 +18,11 @@ executable rpg-bot
       Application.AdventureService
       Application.CharacterService
       Application.CombatService
+      Application.EffectsService
       Application.GameService
       Domain.Character
       Domain.Dice
+      Domain.Effects
       Domain.Enemy
       Domain.Entry
       Domain.StatBlock

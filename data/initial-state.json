@@ -1,0 +1,138 @@
+{
+  "currentEntry": 1,
+  "history": [],
+  "player": {
+    "name": "Iksa Pen",
+    "clues": [],
+    "currentHP": 14,
+    "maxHP": 14,
+    "equipment": [
+      {
+        "id": "leather_armor",
+        "name": "Armadura de Cuero",
+        "description": "Armadura ligera que proporciona CA 11 + DES"
+      },
+      {
+        "id": "shortsword",
+        "name": "Espada Corta",
+        "description": "Arma marcial ligera y versátil"
+      },
+      {
+        "id": "dagger",
+        "name": "Daga",
+        "description": "Arma pequeña que puede ser arrojada"
+      },
+      {
+        "id": "hand_crossbow",
+        "name": "Ballesta de Mano",
+        "description": "Arma a distancia compacta"
+      }
+    ],
+    "inventory": [
+      {
+        "id": "leather_armor",
+        "name": "Armadura de Cuero",
+        "description": "Armadura ligera que proporciona CA 11 + DES"
+      },
+      {
+        "id": "shortsword",
+        "name": "Espada Corta",
+        "description": "Arma marcial ligera y versátil"
+      },
+      {
+        "id": "dagger",
+        "name": "Daga",
+        "description": "Arma pequeña que puede ser arrojada"
+      },
+      {
+        "id": "hand_crossbow",
+        "name": "Ballesta de Mano",
+        "description": "Arma a distancia compacta"
+      },
+      {
+        "id": "thieves_tools",
+        "name": "Herramientas de Ladrón",
+        "description": "Un conjunto de herramientas para abrir cerraduras y desarmar trampas"
+      },
+      {
+        "id": "rope_50ft",
+        "name": "Cuerda (15m)",
+        "description": "Cuerda de cáñamo de 50 pies, útil para escalar"
+      },
+      {
+        "id": "rations_7days",
+        "name": "Provisiones (7 días)",
+        "description": "Comida seca suficiente para una semana"
+      },
+      {
+        "id": "waterskin",
+        "name": "Cantimplora",
+        "description": "Recipiente de cuero para agua"
+      },
+      {
+        "id": "torch_5",
+        "name": "Antorchas (5)",
+        "description": "Cinco antorchas de madera"
+      },
+      {
+        "id": "tinderbox",
+        "name": "Yesquero",
+        "description": "Para encender fuego"
+      },
+      {
+        "id": "backpack",
+        "name": "Mochila",
+        "description": "Una mochila de cuero resistente"
+      }
+    ],
+    "statBlock": {
+      "armorClass": 15,
+      "initiative": 3,
+      "proficiencyBonus": 2,
+      "speed": 30,
+      "attributes": [
+        ["Strength", 9],
+        ["Dexterity", 16],
+        ["Constitution", 12],
+        ["Intelligence", 16],
+        ["Wisdom", 12],
+        ["Charisma", 12]
+      ],
+      "savingThrowProfs": [
+        "Dexterity",
+        "Intelligence"
+      ],
+      "skillProfs": [
+        ["Acrobatics", "Proficient"],
+        ["SleightOfHand", "Proficient"],
+        ["Stealth", "Expertise"],
+        ["Investigation", "Expertise"],
+        ["Perception", "Proficient"],
+        ["Deception", "Proficient"]
+      ],
+      "weapons": [
+        {
+          "name": "Espada Corta",
+          "damageCount": 1,
+          "damageDice": "D6",
+          "damageType": "Piercing",
+          "range": [5, 5]
+        },
+        {
+          "name": "Daga",
+          "damageCount": 1,
+          "damageDice": "D4",
+          "damageType": "Piercing",
+          "range": [5, 20]
+        },
+        {
+          "name": "Ballesta de Mano",
+          "damageCount": 1,
+          "damageDice": "D6",
+          "damageType": "Piercing",
+          "range": [30, 120]
+        }
+      ]
+    }
+  }
+}

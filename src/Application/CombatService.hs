@@ -35,14 +35,17 @@ startCombat player enemies victoryEntry defeatEntry = CombatState
     , combatDefeatEntry  = defeatEntry
     }
 
--- | Player attacks an enemy by index
+-- | Player attacks an enemy by index (index refers to alive enemies only)
 playerAttack :: Int -> Weapon -> CombatState -> IO (CombatActionResult, CombatState)
-playerAttack enemyIdx weapon combat = do
+playerAttack aliveIdx weapon combat = do
     let enemies = combatEnemies combat
-    if enemyIdx < 0 || enemyIdx >= length enemies
+        -- Map alive enemy index to actual index in the full list
+        aliveIndices = [i | (i, e) <- zip [0..] enemies, enemyIsAlive e]
+    if aliveIdx < 0 || aliveIdx >= length aliveIndices
         then pure (PlayerMiss 0, combat)
         else do
-            let target = enemies !! enemyIdx
+            let actualIdx = aliveIndices !! aliveIdx
+                target = enemies !! actualIdx
                 targetAC = armorClass (enemyStatBlock target)
                 player = combatPlayer combat
             (atkRoll, hit, dmgMaybe) <- attack player weapon targetAC
@@ -50,7 +53,7 @@ playerAttack enemyIdx weapon combat = do
                 then do
                     let dmg = maybe 0 id dmgMaybe
                         updatedEnemy = enemyTakeDamage dmg target
-                        updatedEnemies = take enemyIdx enemies ++ [updatedEnemy] ++ drop (enemyIdx + 1) enemies
+                        updatedEnemies = take actualIdx enemies ++ [updatedEnemy] ++ drop (actualIdx + 1) enemies
                         newCombat = combat { combatEnemies = updatedEnemies }
                     if enemyIsAlive updatedEnemy
                         then pure (PlayerHit dmg, newCombat)

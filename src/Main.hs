@@ -23,9 +23,6 @@ corsPolicy = simpleCorsResourcePolicy
 -- | Main entry point
 main :: IO ()
 main = do
-    putStrLn "Starting RPG Bot API Server..."
-    putStrLn "Server running on http://localhost:3000"
-
     -- Initialize server state
     stateRef <- newIORef emptyServerState
 

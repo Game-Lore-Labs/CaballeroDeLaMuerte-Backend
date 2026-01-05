@@ -16,6 +16,7 @@ import Domain.StatBlock
 import Domain.Character
 import Domain.Enemy
 import Domain.Entry
+import Domain.Effects
 
 -- Attribute JSON instances
 instance ToJSON Attribute where
@@ -185,7 +186,8 @@ instance FromJSON Clue where
 -- PlayerCharacter JSON instances
 instance ToJSON PlayerCharacter where
     toJSON pc = object
-        [ "currentHP"  .= pcCurrentHP pc
+        [ "name"       .= pcName pc
+        , "currentHP"  .= pcCurrentHP pc
         , "maxHP"      .= pcMaxHP pc
         , "statBlock"  .= pcStatBlock pc
         , "inventory"  .= pcInventory pc
@@ -195,7 +197,8 @@ instance ToJSON PlayerCharacter where
 
 instance FromJSON PlayerCharacter where
     parseJSON = withObject "PlayerCharacter" $ \v -> PlayerCharacter
-        <$> v .: "currentHP"
+        <$> v .: "name"
+        <*> v .: "currentHP"
         <*> v .: "maxHP"
         <*> v .: "statBlock"
         <*> v .: "inventory"
@@ -327,10 +330,18 @@ data EntryData = EntryData
     , entryDataNarrative :: String
     , entryDataOptions   :: [Option]
     , entryDataRules     :: [RuleData]
+    , entryDataEffects   :: Maybe EntryEffects  -- Effects for this entry
     } deriving (Show, Eq, Generic)
 
 instance ToJSON EntryData
-instance FromJSON EntryData
+
+instance FromJSON EntryData where
+    parseJSON = withObject "EntryData" $ \v -> EntryData
+        <$> v .: "entryDataId"
+        <*> v .: "entryDataNarrative"
+        <*> v .: "entryDataOptions"
+        <*> v .:? "entryDataRules" .!= []
+        <*> v .:? "effects"  -- Accept "effects" from JSON
 
 -- Convert EntryData to Entry
 toEntry :: EntryData -> Entry
@@ -339,7 +350,93 @@ toEntry ed = Entry
     , entryNarrative = entryDataNarrative ed
     , entryOptions   = entryDataOptions ed
     , entryRules     = map toRule (entryDataRules ed)
+    , entryEffects   = maybe emptyEffects id (entryDataEffects ed)
     }
 
 -- Convert Entry to EntryData (for saving) - requires ConditionData
 -- This needs the original ConditionData, so we keep EntryData for persistence
+
+-- Effects JSON instances
+instance ToJSON StatEffect where
+    toJSON se = object
+        [ "name"     .= statEffectName se
+        , "modifier" .= statEffectModifier se
+        ]
+
+instance FromJSON StatEffect where
+    parseJSON = withObject "StatEffect" $ \v -> StatEffect
+        <$> v .: "name"
+        <*> v .: "modifier"
+
+instance ToJSON EquipmentEffect where
+    toJSON ee = object
+        [ "name"     .= equipmentEffectName ee
+        , "type"     .= equipmentEffectType ee
+        , "bonus"    .= equipmentEffectBonus ee
+        , "quantity" .= equipmentEffectQuantity ee
+        ]
+
+instance FromJSON EquipmentEffect where
+    parseJSON = withObject "EquipmentEffect" $ \v -> EquipmentEffect
+        <$> v .: "name"
+        <*> v .: "type"
+        <*> v .:? "bonus"
+        <*> v .:? "quantity"
+
+instance ToJSON InventoryEffect where
+    toJSON ie = object
+        [ "name"     .= inventoryEffectName ie
+        , "type"     .= inventoryEffectType ie
+        , "quantity" .= inventoryEffectQuantity ie
+        , "value"    .= inventoryEffectValue ie
+        ]
+
+instance FromJSON InventoryEffect where
+    parseJSON = withObject "InventoryEffect" $ \v -> InventoryEffect
+        <$> v .: "name"
+        <*> v .: "type"
+        <*> v .:? "quantity"
+        <*> v .:? "value"
+
+instance ToJSON AttributeEffect where
+    toJSON ae = object
+        [ "name"        .= attributeEffectName ae
+        , "modifier"    .= attributeEffectModifier ae
+        , "savingThrow" .= attributeEffectSavingThrow ae
+        ]
+
+instance FromJSON AttributeEffect where
+    parseJSON = withObject "AttributeEffect" $ \v -> AttributeEffect
+        <$> v .: "name"
+        <*> v .:? "modifier"
+        <*> v .:? "savingThrow"
+
+instance ToJSON SkillEffect where
+    toJSON se = object
+        [ "name"     .= skillEffectName se
+        , "modifier" .= skillEffectModifier se
+        , "prof"     .= skillEffectProf se
+        ]
+
+instance FromJSON SkillEffect where
+    parseJSON = withObject "SkillEffect" $ \v -> SkillEffect
+        <$> v .: "name"
+        <*> v .:? "modifier"
+        <*> v .:? "prof"
+
+instance ToJSON EntryEffects where
+    toJSON ef = object
+        [ "stats"      .= effectsStats ef
+        , "equipment"  .= effectsEquipment ef
+        , "inventory"  .= effectsInventory ef
+        , "attributes" .= effectsAttributes ef
+        , "skills"     .= effectsSkills ef
+        ]
+
+instance FromJSON EntryEffects where
+    parseJSON = withObject "EntryEffects" $ \v -> EntryEffects
+        <$> v .:? "stats" .!= []
+        <*> v .:? "equipment" .!= []
+        <*> v .:? "inventory" .!= []
+        <*> v .:? "attributes" .!= []
+        <*> v .:? "skills" .!= []

@@ -21,7 +21,8 @@ data Clue = Clue
 
 -- | Player character state
 data PlayerCharacter = PlayerCharacter
-    { pcCurrentHP  :: Int
+    { pcName       :: String
+    , pcCurrentHP  :: Int
     , pcMaxHP      :: Int
     , pcStatBlock  :: StatBlock
     , pcInventory  :: [Item]      -- Carried items

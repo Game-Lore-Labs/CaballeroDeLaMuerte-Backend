@@ -112,6 +112,24 @@ pathsObject = object
             ]
         ]
 
+    , "/game/reset" .= object
+        [ "post" .= object
+            [ "tags" .= (["Game"] :: [T.Text])
+            , "summary" .= ("Reset game to initial state" :: T.Text)
+            , "description" .= ("Resets the game to its initial state by copying initial-state.json to save.json. This will clear all progress and start fresh." :: T.Text)
+            , "operationId" .= ("resetGame" :: T.Text)
+            , "responses" .= object
+                [ "200" .= object
+                    [ "description" .= ("Game reset successfully" :: T.Text)
+                    , "content" .= jsonContent (ref "ApiResponseString")
+                    ]
+                , "500" .= object
+                    [ "description" .= ("Reset failed" :: T.Text)
+                    ]
+                ]
+            ]
+        ]
+
     -- Entry
     , "/entry/current" .= object
         [ "get" .= object

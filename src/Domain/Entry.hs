@@ -2,6 +2,7 @@ module Domain.Entry where
 
 import Domain.Types
 import Domain.Character (PlayerCharacter, hasClue, hasItem)
+import Domain.Effects (EntryEffects, emptyEffects)
 
 -- | Game state used for rule evaluation
 data GameState = GameState
@@ -47,6 +48,7 @@ data Entry = Entry
     , entryNarrative :: String
     , entryOptions   :: [Option]
     , entryRules     :: [Rule]
+    , entryEffects   :: EntryEffects  -- Effects applied when entering this entry
     }
 
 -- Rule constructors using Haskell functions

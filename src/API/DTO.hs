@@ -70,12 +70,50 @@ instance FromJSON EntryDTO where
         <*> v .: "narrative"
         <*> v .: "options"
 
+-- Weapon DTO
+
+data WeaponDTO = WeaponDTO
+    { weaponDtoIndex      :: Int
+    , weaponDtoName       :: String
+    , weaponDtoDamageDice :: String
+    , weaponDtoDamageType :: String
+    , weaponDtoRange      :: (Int, Int)
+    } deriving (Show, Eq, Generic)
+
+instance ToJSON WeaponDTO where
+    toJSON w = object
+        [ "index"      .= weaponDtoIndex w
+        , "name"       .= weaponDtoName w
+        , "damageDice" .= weaponDtoDamageDice w
+        , "damageType" .= weaponDtoDamageType w
+        , "range"      .= weaponDtoRange w
+        ]
+
+instance FromJSON WeaponDTO where
+    parseJSON = withObject "WeaponDTO" $ \v -> WeaponDTO
+        <$> v .: "index"
+        <*> v .: "name"
+        <*> v .: "damageDice"
+        <*> v .: "damageType"
+        <*> v .: "range"
+
+fromWeapon :: Int -> Weapon -> WeaponDTO
+fromWeapon idx w = WeaponDTO
+    { weaponDtoIndex      = idx
+    , weaponDtoName       = weaponName w
+    , weaponDtoDamageDice = show (weaponDamageCount w) ++ "d" ++ drop 1 (show (weaponDamageDice w))
+    , weaponDtoDamageType = show (weaponDamageType w)
+    , weaponDtoRange      = weaponRange w
+    }
+
 -- Character DTOs
 
 data CharacterDTO = CharacterDTO
-    { charDtoCurrentHP :: Int
+    { charDtoName      :: String
+    , charDtoCurrentHP :: Int
     , charDtoMaxHP     :: Int
     , charDtoAC        :: Int
+    , charDtoWeapons   :: [WeaponDTO]
     , charDtoInventory :: [ItemDTO]
     , charDtoEquipment :: [ItemDTO]
     , charDtoClues     :: [ClueId]
@@ -83,9 +121,11 @@ data CharacterDTO = CharacterDTO
 
 instance ToJSON CharacterDTO where
     toJSON c = object
-        [ "currentHP" .= charDtoCurrentHP c
+        [ "name"      .= charDtoName c
+        , "currentHP" .= charDtoCurrentHP c
         , "maxHP"     .= charDtoMaxHP c
         , "ac"        .= charDtoAC c
+        , "weapons"   .= charDtoWeapons c
         , "inventory" .= charDtoInventory c
         , "equipment" .= charDtoEquipment c
         , "clues"     .= charDtoClues c
@@ -93,9 +133,11 @@ instance ToJSON CharacterDTO where
 
 instance FromJSON CharacterDTO where
     parseJSON = withObject "CharacterDTO" $ \v -> CharacterDTO
-        <$> v .: "currentHP"
+        <$> v .: "name"
+        <*> v .: "currentHP"
         <*> v .: "maxHP"
         <*> v .: "ac"
+        <*> v .: "weapons"
         <*> v .: "inventory"
         <*> v .: "equipment"
         <*> v .: "clues"
@@ -124,9 +166,11 @@ fromItem i = ItemDTO (itemId i) (itemName i) (itemDescription i)
 
 fromCharacter :: PlayerCharacter -> CharacterDTO
 fromCharacter pc = CharacterDTO
-    { charDtoCurrentHP = pcCurrentHP pc
+    { charDtoName      = pcName pc
+    , charDtoCurrentHP = pcCurrentHP pc
     , charDtoMaxHP     = pcMaxHP pc
     , charDtoAC        = armorClass (pcStatBlock pc)
+    , charDtoWeapons   = zipWith fromWeapon [0..] (weapons (pcStatBlock pc))
     , charDtoInventory = map fromItem (pcInventory pc)
     , charDtoEquipment = map fromItem (pcEquipment pc)
     , charDtoClues     = S.toList (pcClues pc)
@@ -203,6 +247,7 @@ data OptionResultDTO = OptionResultDTO
     , resultDestination :: Maybe EntryId
     , resultSkill       :: Maybe String
     , resultAttribute   :: Maybe String
+    , resultEffects     :: [String]      -- Effects that were applied
     } deriving (Show, Eq, Generic)
 
 instance ToJSON OptionResultDTO where
@@ -213,6 +258,7 @@ instance ToJSON OptionResultDTO where
         , "destination" .= resultDestination r
         , "skill"       .= resultSkill r
         , "attribute"   .= resultAttribute r
+        , "effects"     .= resultEffects r
         ]
 
 instance FromJSON OptionResultDTO where
@@ -223,6 +269,7 @@ instance FromJSON OptionResultDTO where
         <*> v .:? "destination"
         <*> v .:? "skill"
         <*> v .:? "attribute"
+        <*> v .:? "effects" .!= []
 
 data CheckResultDTO = CheckResultDTO
     { checkResultSkill   :: String

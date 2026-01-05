@@ -6,7 +6,14 @@
             {"id": 1, "description": "Aceptar la invitación del anciano", "outcome": {"type": "GoToEntry", "entry": 2}},
             {"id": 2, "description": "Seguir cabalgando hacia el bosque", "outcome": {"type": "GoToEntry", "entry": 3}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [2, {
         "entryDataId": 2,
@@ -15,7 +22,14 @@
             {"id": 1, "description": "Contarle sobre tu misión", "outcome": {"type": "GoToEntry", "entry": 4}},
             {"id": 2, "description": "Simplemente reponerte y seguir tu camino", "outcome": {"type": "GoToEntry", "entry": 3}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [3, {
         "entryDataId": 3,
@@ -23,7 +37,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "Entrar en el Bosque Weathercote", "outcome": {"type": "GoToEntry", "entry": 100}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [4, {
         "entryDataId": 4,
@@ -31,7 +52,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "Continuar hacia el Bosque Weathercote", "outcome": {"type": "GoToEntry", "entry": 3}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [{"name": "Información sobre el Árbol Rojo", "type": "information"}],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [100, {
         "entryDataId": 100,
@@ -41,12 +69,19 @@
             {"id": 2, "description": "Buscar trampas (Percepción CD 12)", "outcome": {"type": "SkillCheck", "skill": "Perception", "dc": 12, "success": 103, "failure": 315}},
             {"id": 3, "description": "Continuar sin precauciones", "outcome": {"type": "GoToEntry", "entry": 105}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
-    [101, {"entryDataId": 101, "entryDataNarrative": "Te mueves silenciosamente entre los árboles.", "entryDataOptions": [{"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 105}}], "entryDataRules": []}],
-    [102, {"entryDataId": 102, "entryDataNarrative": "Pisas una rama que cruje ruidosamente.", "entryDataOptions": [{"id": 1, "description": "Continuar con cuidado", "outcome": {"type": "GoToEntry", "entry": 105}}], "entryDataRules": []}],
-    [103, {"entryDataId": 103, "entryDataNarrative": "No ves trampas aquí.", "entryDataOptions": [{"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 105}}], "entryDataRules": []}],
-    [104, {"entryDataId": 104, "entryDataNarrative": "No detectas nada sospechoso.", "entryDataOptions": [{"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 105}}], "entryDataRules": []}],
+    [101, {"entryDataId": 101, "entryDataNarrative": "Te mueves silenciosamente entre los árboles.", "entryDataOptions": [{"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 105}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
+    [102, {"entryDataId": 102, "entryDataNarrative": "Pisas una rama que cruje ruidosamente.", "entryDataOptions": [{"id": 1, "description": "Continuar con cuidado", "outcome": {"type": "GoToEntry", "entry": 105}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
+    [103, {"entryDataId": 103, "entryDataNarrative": "No ves trampas aquí.", "entryDataOptions": [{"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 105}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
+    [104, {"entryDataId": 104, "entryDataNarrative": "No detectas nada sospechoso.", "entryDataOptions": [{"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 105}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
     [105, {
         "entryDataId": 105,
         "entryDataNarrative": "El sendero se bifurca. A la izquierda hay telarañas bloqueando el paso. A la derecha ves un edificio de piedra. Cerca hay una capa verde colgando de una rama. También notas un sendero secundario al norte.",
@@ -56,7 +91,14 @@
             {"id": 3, "description": "Inspeccionar la capa", "outcome": {"type": "GoToEntry", "entry": 106}},
             {"id": 4, "description": "Explorar el sendero secundario", "outcome": {"type": "GoToEntry", "entry": 305}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [106, {
         "entryDataId": 106,
@@ -65,7 +107,21 @@
             {"id": 1, "description": "Ir hacia las telarañas", "outcome": {"type": "GoToEntry", "entry": 110}},
             {"id": 2, "description": "Ir hacia el edificio", "outcome": {"type": "GoToEntry", "entry": 115}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [{"name": "armorClass", "modifier": "1"}],
+            "equipment": [{"name": "Capa de Protección", "type": "wondrous", "bonus": "+1 CA y salvaciones"}],
+            "inventory": [],
+            "attributes": [
+                {"name": "strength", "savingThrow": 1},
+                {"name": "dexterity", "savingThrow": 1},
+                {"name": "constitution", "savingThrow": 1},
+                {"name": "intelligence", "savingThrow": 1},
+                {"name": "wisdom", "savingThrow": 1},
+                {"name": "charisma", "savingThrow": 1}
+            ],
+            "skills": []
+        }
     }],
     [110, {
         "entryDataId": 110,
@@ -75,7 +131,14 @@
             {"id": 2, "description": "Cortar las telarañas", "outcome": {"type": "GoToEntry", "entry": 112}},
             {"id": 3, "description": "Volver y tomar otro camino", "outcome": {"type": "GoToEntry", "entry": 105}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [111, {
         "entryDataId": 111,
@@ -83,7 +146,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "¡Combatir a las arañas!", "outcome": {"type": "StartCombat", "enemies": ["ArañaLoboGigante", "ArañaLoboGigante"], "victory": 113, "defeat": 999}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [112, {
         "entryDataId": 112,
@@ -91,7 +161,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "Defenderte (Salvación DES CD 14)", "outcome": {"type": "SaveCheck", "attribute": "Dexterity", "dc": 14, "success": 113, "failure": 114}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [113, {
         "entryDataId": 113,
@@ -99,7 +176,17 @@
         "entryDataOptions": [
             {"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 120}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [{"name": "Daga", "type": "weapon"}, {"name": "Ballesta", "type": "weapon"}],
+            "inventory": [
+                {"name": "Oro", "quantity": 21, "type": "currency"},
+                {"name": "Poción de Curación", "type": "potion"}
+            ],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [114, {
         "entryDataId": 114,
@@ -107,7 +194,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["ArañaLoboGigante"], "victory": 113, "defeat": 999}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [{"name": "currentHP", "modifier": "-1d6"}],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [115, {
         "entryDataId": 115,
@@ -117,7 +211,14 @@
             {"id": 2, "description": "Abrir la puerta", "outcome": {"type": "GoToEntry", "entry": 119}},
             {"id": 3, "description": "Continuar al norte", "outcome": {"type": "GoToEntry", "entry": 125}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [117, {
         "entryDataId": 117,
@@ -127,16 +228,30 @@
             {"id": 2, "description": "Abrir de todos modos", "outcome": {"type": "GoToEntry", "entry": 119}},
             {"id": 3, "description": "Continuar al norte", "outcome": {"type": "GoToEntry", "entry": 125}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
-    [118, {"entryDataId": 118, "entryDataNarrative": "No detectas trampas.", "entryDataOptions": [{"id": 1, "description": "Abrir la puerta", "outcome": {"type": "GoToEntry", "entry": 119}}, {"id": 2, "description": "Continuar al norte", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
+    [118, {"entryDataId": 118, "entryDataNarrative": "No detectas trampas.", "entryDataOptions": [{"id": 1, "description": "Abrir la puerta", "outcome": {"type": "GoToEntry", "entry": 119}}, {"id": 2, "description": "Continuar al norte", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
     [119, {
         "entryDataId": 119,
         "entryDataNarrative": "¡Dos dardos vuelan hacia ti!",
         "entryDataOptions": [
             {"id": 1, "description": "Esquivar (Salvación DES CD 14)", "outcome": {"type": "SaveCheck", "attribute": "Dexterity", "dc": 14, "success": 121, "failure": 124}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [120, {
         "entryDataId": 120,
@@ -145,7 +260,14 @@
             {"id": 1, "description": "Acercarse al Árbol Rojo", "outcome": {"type": "GoToEntry", "entry": 130}},
             {"id": 2, "description": "Continuar por el sendero", "outcome": {"type": "GoToEntry", "entry": 125}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [121, {
         "entryDataId": 121,
@@ -154,10 +276,17 @@
             {"id": 1, "description": "Entrar", "outcome": {"type": "GoToEntry", "entry": 140}},
             {"id": 2, "description": "Continuar al norte", "outcome": {"type": "GoToEntry", "entry": 125}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
-    [122, {"entryDataId": 122, "entryDataNarrative": "¡Activas la trampa! Dardos vuelan hacia ti.", "entryDataOptions": [{"id": 1, "description": "Esquivar (Salvación DES CD 14 con ventaja)", "outcome": {"type": "SaveCheck", "attribute": "Dexterity", "dc": 14, "success": 121, "failure": 124}}], "entryDataRules": []}],
-    [124, {"entryDataId": 124, "entryDataNarrative": "Los dardos te alcanzan. Sufres 2d4 de daño. La puerta está abierta.", "entryDataOptions": [{"id": 1, "description": "Entrar", "outcome": {"type": "GoToEntry", "entry": 140}}, {"id": 2, "description": "Continuar al norte", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
+    [122, {"entryDataId": 122, "entryDataNarrative": "¡Activas la trampa! Dardos vuelan hacia ti.", "entryDataOptions": [{"id": 1, "description": "Esquivar (Salvación DES CD 14 con ventaja)", "outcome": {"type": "SaveCheck", "attribute": "Dexterity", "dc": 14, "success": 121, "failure": 124}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
+    [124, {"entryDataId": 124, "entryDataNarrative": "Los dardos te alcanzan. Sufres 2d4 de daño. La puerta está abierta.", "entryDataOptions": [{"id": 1, "description": "Entrar", "outcome": {"type": "GoToEntry", "entry": 140}}, {"id": 2, "description": "Continuar al norte", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": [], "effects": {"stats": [{"name": "currentHP", "modifier": "-2d4"}], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
     [125, {
         "entryDataId": 125,
         "entryDataNarrative": "Una intersección. Un letrero indica:\n- Norte: Pastizales\n- Oeste: Cementerio\n- Este: Cueva\n\nHay dos zonas que parecen buenas para acampar.",
@@ -167,7 +296,14 @@
             {"id": 3, "description": "Este - Cueva", "outcome": {"type": "GoToEntry", "entry": 170}},
             {"id": 4, "description": "Acampar y descansar", "outcome": {"type": "GoToEntry", "entry": 330}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [130, {
         "entryDataId": 130,
@@ -177,11 +313,18 @@
             {"id": 2, "description": "Trepar (Atletismo CD 9)", "outcome": {"type": "SkillCheck", "skill": "Athletics", "dc": 9, "success": 132, "failure": 133}},
             {"id": 3, "description": "Volver al sendero", "outcome": {"type": "GoToEntry", "entry": 125}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
-    [131, {"entryDataId": 131, "entryDataNarrative": "Tallas una rama hasta hacer una estaca afilada.\n\n¡Has obtenido una Estaca del Árbol Rojo!", "entryDataOptions": [{"id": 1, "description": "Volver al sendero", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
-    [132, {"entryDataId": 132, "entryDataNarrative": "Desde arriba ves afloramientos rocosos al norte.", "entryDataOptions": [{"id": 1, "description": "Tomar una rama", "outcome": {"type": "GoToEntry", "entry": 131}}, {"id": 2, "description": "Volver al sendero", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
-    [133, {"entryDataId": 133, "entryDataNarrative": "No puedes subir.", "entryDataOptions": [{"id": 1, "description": "Tomar una rama", "outcome": {"type": "GoToEntry", "entry": 131}}, {"id": 2, "description": "Volver", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
+    [131, {"entryDataId": 131, "entryDataNarrative": "Tallas una rama hasta hacer una estaca afilada.\n\n¡Has obtenido una Estaca del Árbol Rojo!", "entryDataOptions": [{"id": 1, "description": "Volver al sendero", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [{"name": "Estaca del Árbol Rojo", "type": "special_weapon"}], "inventory": [], "attributes": [], "skills": []}}],
+    [132, {"entryDataId": 132, "entryDataNarrative": "Desde arriba ves afloramientos rocosos al norte.", "entryDataOptions": [{"id": 1, "description": "Tomar una rama", "outcome": {"type": "GoToEntry", "entry": 131}}, {"id": 2, "description": "Volver al sendero", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
+    [133, {"entryDataId": 133, "entryDataNarrative": "No puedes subir.", "entryDataOptions": [{"id": 1, "description": "Tomar una rama", "outcome": {"type": "GoToEntry", "entry": 131}}, {"id": 2, "description": "Volver", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
     [140, {
         "entryDataId": 140,
         "entryDataNarrative": "Bajas escaleras hasta una cámara. Un altar de bronce de Amaunator está en el centro.",
@@ -190,12 +333,19 @@
             {"id": 2, "description": "Buscar (Investigación CD 15)", "outcome": {"type": "SkillCheck", "skill": "Investigation", "dc": 15, "success": 142, "failure": 143}},
             {"id": 3, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
-    [141, {"entryDataId": 141, "entryDataNarrative": "Detrás del altar encuentras un Símbolo Sagrado de Amaunator.", "entryDataOptions": [{"id": 1, "description": "Buscar más", "outcome": {"type": "GoToEntry", "entry": 142}}, {"id": 2, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
-    [142, {"entryDataId": 142, "entryDataNarrative": "Encuentras un libro con información sobre el Caballero de la Muerte y un Pergamino de Curar Heridas.", "entryDataOptions": [{"id": 1, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
-    [143, {"entryDataId": 143, "entryDataNarrative": "No encuentras nada de valor.", "entryDataOptions": [{"id": 1, "description": "Inspeccionar altar", "outcome": {"type": "GoToEntry", "entry": 141}}, {"id": 2, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
-    [150, {"entryDataId": 150, "entryDataNarrative": "El bosque termina. ¡Pero no has encontrado a Darek! Debe estar en otra parte.", "entryDataOptions": [{"id": 1, "description": "Volver", "outcome": {"type": "GoToEntry", "entry": 125}}, {"id": 2, "description": "Abandonar la misión", "outcome": {"type": "GoToEntry", "entry": 999}}], "entryDataRules": []}],
+    [141, {"entryDataId": 141, "entryDataNarrative": "Detrás del altar encuentras un Símbolo Sagrado de Amaunator.", "entryDataOptions": [{"id": 1, "description": "Buscar más", "outcome": {"type": "GoToEntry", "entry": 142}}, {"id": 2, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [{"name": "Símbolo Sagrado de Amaunator", "type": "holy_symbol"}], "inventory": [], "attributes": [], "skills": []}}],
+    [142, {"entryDataId": 142, "entryDataNarrative": "Encuentras un libro con información sobre el Caballero de la Muerte y un Pergamino de Curar Heridas.", "entryDataOptions": [{"id": 1, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [{"name": "Libro sobre el Caballero de la Muerte", "type": "information"}, {"name": "Pergamino de Curar Heridas", "type": "scroll"}], "attributes": [], "skills": []}}],
+    [143, {"entryDataId": 143, "entryDataNarrative": "No encuentras nada de valor.", "entryDataOptions": [{"id": 1, "description": "Inspeccionar altar", "outcome": {"type": "GoToEntry", "entry": 141}}, {"id": 2, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
+    [150, {"entryDataId": 150, "entryDataNarrative": "El bosque termina. ¡Pero no has encontrado a Darek! Debe estar en otra parte.", "entryDataOptions": [{"id": 1, "description": "Volver", "outcome": {"type": "GoToEntry", "entry": 125}}, {"id": 2, "description": "Abandonar la misión", "outcome": {"type": "GoToEntry", "entry": 999}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
     [160, {
         "entryDataId": 160,
         "entryDataNarrative": "Avanzas hacia el cementerio. Al final ves una cripta grande con puertas ornamentadas.",
@@ -203,12 +353,19 @@
             {"id": 1, "description": "Avanzar con sigilo (Sigilo CD 14)", "outcome": {"type": "SkillCheck", "skill": "Stealth", "dc": 14, "success": 161, "failure": 162}},
             {"id": 2, "description": "Buscar trampas (Percepción CD 15)", "outcome": {"type": "SkillCheck", "skill": "Perception", "dc": 15, "success": 163, "failure": 164}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
-    [161, {"entryDataId": 161, "entryDataNarrative": "Te mueves silenciosamente.", "entryDataOptions": [{"id": 1, "description": "Ir a la cripta", "outcome": {"type": "GoToEntry", "entry": 165}}], "entryDataRules": []}],
-    [162, {"entryDataId": 162, "entryDataNarrative": "Algo se mueve bajo la tierra... ¡te han detectado! El suelo de una tumba se agrieta.", "entryDataOptions": [{"id": 1, "description": "Ir a la cripta rápidamente", "outcome": {"type": "GoToEntry", "entry": 320}}, {"id": 2, "description": "Huir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
-    [163, {"entryDataId": 163, "entryDataNarrative": "Notas una tumba con tierra fresca. La evitas.", "entryDataOptions": [{"id": 1, "description": "Ir a la cripta", "outcome": {"type": "GoToEntry", "entry": 165}}], "entryDataRules": []}],
-    [164, {"entryDataId": 164, "entryDataNarrative": "No detectas nada. Avanzas confiado hacia la cripta cuando... ¡el suelo cede!", "entryDataOptions": [{"id": 1, "description": "¡Saltar! (Salvación DES CD 16)", "outcome": {"type": "SaveCheck", "attribute": "Dexterity", "dc": 16, "success": 165, "failure": 325}}], "entryDataRules": []}],
+    [161, {"entryDataId": 161, "entryDataNarrative": "Te mueves silenciosamente.", "entryDataOptions": [{"id": 1, "description": "Ir a la cripta", "outcome": {"type": "GoToEntry", "entry": 165}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
+    [162, {"entryDataId": 162, "entryDataNarrative": "Algo se mueve bajo la tierra... ¡te han detectado! El suelo de una tumba se agrieta.", "entryDataOptions": [{"id": 1, "description": "Ir a la cripta rápidamente", "outcome": {"type": "GoToEntry", "entry": 320}}, {"id": 2, "description": "Huir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
+    [163, {"entryDataId": 163, "entryDataNarrative": "Notas una tumba con tierra fresca. La evitas.", "entryDataOptions": [{"id": 1, "description": "Ir a la cripta", "outcome": {"type": "GoToEntry", "entry": 165}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
+    [164, {"entryDataId": 164, "entryDataNarrative": "No detectas nada. Avanzas confiado hacia la cripta cuando... ¡el suelo cede!", "entryDataOptions": [{"id": 1, "description": "¡Saltar! (Salvación DES CD 16)", "outcome": {"type": "SaveCheck", "attribute": "Dexterity", "dc": 16, "success": 165, "failure": 325}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
     [165, {
         "entryDataId": 165,
         "entryDataNarrative": "La cripta tiene una placa: \"La Familia de-\" (el nombre está destruido). Las puertas están entreabiertas.",
@@ -216,15 +373,22 @@
             {"id": 1, "description": "Revisar trampas (Percepción CD 12)", "outcome": {"type": "SkillCheck", "skill": "Perception", "dc": 12, "success": 166, "failure": 167}},
             {"id": 2, "description": "Entrar", "outcome": {"type": "GoToEntry", "entry": 180}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
-    [166, {"entryDataId": 166, "entryDataNarrative": "No hay trampas.", "entryDataOptions": [{"id": 1, "description": "Entrar", "outcome": {"type": "GoToEntry", "entry": 180}}], "entryDataRules": []}],
-    [167, {"entryDataId": 167, "entryDataNarrative": "No detectas trampas.", "entryDataOptions": [{"id": 1, "description": "Entrar", "outcome": {"type": "GoToEntry", "entry": 180}}], "entryDataRules": []}],
-    [170, {"entryDataId": 170, "entryDataNarrative": "Una cueva al otro lado de un río.", "entryDataOptions": [{"id": 1, "description": "Vadear (Atletismo CD 12)", "outcome": {"type": "SkillCheck", "skill": "Athletics", "dc": 12, "success": 171, "failure": 172}}, {"id": 2, "description": "Volver", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
-    [171, {"entryDataId": 171, "entryDataNarrative": "Cruzas el río.", "entryDataOptions": [{"id": 1, "description": "Entrar a la cueva", "outcome": {"type": "GoToEntry", "entry": 175}}], "entryDataRules": []}],
-    [172, {"entryDataId": 172, "entryDataNarrative": "La corriente te arrastra. Pierdes 1 PV y tus provisiones.", "entryDataOptions": [{"id": 1, "description": "Entrar a la cueva", "outcome": {"type": "GoToEntry", "entry": 175}}], "entryDataRules": []}],
-    [175, {"entryDataId": 175, "entryDataNarrative": "Dentro de la cueva hay huesos y cadáveres. En la pared dice: \"NORTE\". Encuentras un medallón: \"A Fastus Brant, Capitán de la Guardia de Orlbar\".", "entryDataOptions": [{"id": 1, "description": "Buscar tesoros (Investigación CD 12)", "outcome": {"type": "SkillCheck", "skill": "Investigation", "dc": 12, "success": 176, "failure": 310}}, {"id": 2, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
-    [176, {"entryDataId": 176, "entryDataNarrative": "Encuentras 17 pp y joyas por valor de 10 po entre los restos. También un juguete de soldado de madera de un niño... perturbador.", "entryDataOptions": [{"id": 1, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": []}],
+    [166, {"entryDataId": 166, "entryDataNarrative": "No hay trampas.", "entryDataOptions": [{"id": 1, "description": "Entrar", "outcome": {"type": "GoToEntry", "entry": 180}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
+    [167, {"entryDataId": 167, "entryDataNarrative": "No detectas trampas.", "entryDataOptions": [{"id": 1, "description": "Entrar", "outcome": {"type": "GoToEntry", "entry": 180}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
+    [170, {"entryDataId": 170, "entryDataNarrative": "Una cueva al otro lado de un río.", "entryDataOptions": [{"id": 1, "description": "Vadear (Atletismo CD 12)", "outcome": {"type": "SkillCheck", "skill": "Athletics", "dc": 12, "success": 171, "failure": 172}}, {"id": 2, "description": "Volver", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
+    [171, {"entryDataId": 171, "entryDataNarrative": "Cruzas el río.", "entryDataOptions": [{"id": 1, "description": "Entrar a la cueva", "outcome": {"type": "GoToEntry", "entry": 175}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
+    [172, {"entryDataId": 172, "entryDataNarrative": "La corriente te arrastra. Pierdes 1 PV y tus provisiones.", "entryDataOptions": [{"id": 1, "description": "Entrar a la cueva", "outcome": {"type": "GoToEntry", "entry": 175}}], "entryDataRules": [], "effects": {"stats": [{"name": "currentHP", "modifier": "-1"}], "equipment": [], "inventory": [{"name": "Provisiones", "quantity": -1, "type": "consumable"}], "attributes": [], "skills": []}}],
+    [175, {"entryDataId": 175, "entryDataNarrative": "Dentro de la cueva hay huesos y cadáveres. En la pared dice: \"NORTE\". Encuentras un medallón: \"A Fastus Brant, Capitán de la Guardia de Orlbar\".", "entryDataOptions": [{"id": 1, "description": "Buscar tesoros (Investigación CD 12)", "outcome": {"type": "SkillCheck", "skill": "Investigation", "dc": 12, "success": 176, "failure": 310}}, {"id": 2, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [{"name": "Medallón de Fastus Brant", "type": "jewelry"}], "attributes": [], "skills": []}}],
+    [176, {"entryDataId": 176, "entryDataNarrative": "Encuentras 17 pp y joyas por valor de 10 po entre los restos. También un juguete de soldado de madera de un niño... perturbador.", "entryDataOptions": [{"id": 1, "description": "Salir", "outcome": {"type": "GoToEntry", "entry": 125}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [{"name": "Platino", "quantity": 17, "type": "currency"}, {"name": "Joyas", "value": 10, "type": "treasure"}], "attributes": [], "skills": []}}],
     [180, {
         "entryDataId": 180,
         "entryDataNarrative": "Dentro de la cripta hay cuatro ataúdes. Al fondo, un pasillo continúa.",
@@ -232,16 +396,30 @@
             {"id": 1, "description": "Examinar ataúdes", "outcome": {"type": "GoToEntry", "entry": 181}},
             {"id": 2, "description": "Seguir adelante", "outcome": {"type": "GoToEntry", "entry": 185}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
-    [181, {"entryDataId": 181, "entryDataNarrative": "Los ataúdes están clavados firmemente.", "entryDataOptions": [{"id": 1, "description": "Seguir adelante", "outcome": {"type": "GoToEntry", "entry": 185}}], "entryDataRules": []}],
+    [181, {"entryDataId": 181, "entryDataNarrative": "Los ataúdes están clavados firmemente.", "entryDataOptions": [{"id": 1, "description": "Seguir adelante", "outcome": {"type": "GoToEntry", "entry": 185}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
     [185, {
         "entryDataId": 185,
         "entryDataNarrative": "Escuchas voces adelante. \"¡Arrodíllate, escudero!\"",
         "entryDataOptions": [
             {"id": 1, "description": "Avanzar con sigilo (Sigilo CD 10)", "outcome": {"type": "SkillCheck", "skill": "Stealth", "dc": 10, "success": 186, "failure": 187}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [186, {
         "entryDataId": 186,
@@ -253,7 +431,14 @@
         ],
         "entryDataRules": [
             {"ruleDataCondition": {"tag": "HasItem", "contents": "estaca_arbol_rojo"}, "ruleDataEffect": {"type": "AddOption", "option": {"id": 99, "description": "Preparar la Estaca del Árbol Rojo", "outcome": {"type": "GoToEntry", "entry": 193}}}}
-        ]
+        ],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [187, {
         "entryDataId": 187,
@@ -261,19 +446,33 @@
         "entryDataOptions": [
             {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["CaballeroDeLaMuerte"], "victory": 200, "defeat": 210}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
-    [190, {"entryDataId": 190, "entryDataNarrative": "Tu ataque golpea al caballero. \"¡Aaargh! ¿Quién se atreve?\" Se levanta furioso.", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["CaballeroDeLaMuerte"], "victory": 200, "defeat": 210}}], "entryDataRules": []}],
-    [191, {"entryDataId": 191, "entryDataNarrative": "Te lanzas al ataque.", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["CaballeroDeLaMuerte"], "victory": 200, "defeat": 210}}], "entryDataRules": []}],
-    [192, {"entryDataId": 192, "entryDataNarrative": "\"¿Quién eres tú para darme órdenes? ¡Prepárate para morir!\"", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["CaballeroDeLaMuerte"], "victory": 200, "defeat": 210}}], "entryDataRules": []}],
-    [193, {"entryDataId": 193, "entryDataNarrative": "Preparas la Estaca del Árbol Rojo. Si vences, podrás destruirlo permanentemente.", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["CaballeroDeLaMuerte"], "victory": 201, "defeat": 210}}], "entryDataRules": []}],
+    [190, {"entryDataId": 190, "entryDataNarrative": "Tu ataque golpea al caballero. \"¡Aaargh! ¿Quién se atreve?\" Se levanta furioso.", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["CaballeroDeLaMuerte"], "victory": 200, "defeat": 210}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
+    [191, {"entryDataId": 191, "entryDataNarrative": "Te lanzas al ataque.", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["CaballeroDeLaMuerte"], "victory": 200, "defeat": 210}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
+    [192, {"entryDataId": 192, "entryDataNarrative": "\"¿Quién eres tú para darme órdenes? ¡Prepárate para morir!\"", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["CaballeroDeLaMuerte"], "victory": 200, "defeat": 210}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
+    [193, {"entryDataId": 193, "entryDataNarrative": "Preparas la Estaca del Árbol Rojo. Si vences, podrás destruirlo permanentemente.", "entryDataOptions": [{"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["CaballeroDeLaMuerte"], "victory": 201, "defeat": 210}}], "entryDataRules": [], "effects": {"stats": [], "equipment": [], "inventory": [], "attributes": [], "skills": []}}],
     [200, {
         "entryDataId": 200,
         "entryDataNarrative": "¡El Caballero de la Muerte cae! Añade 200 XP.\n\nPero su mano se contrae... ¡no está destruido! Sin la estaca, debes huir con Darek.",
         "entryDataOptions": [
             {"id": 1, "description": "Huir con Darek", "outcome": {"type": "GoToEntry", "entry": 220}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [201, {
         "entryDataId": 201,
@@ -281,13 +480,27 @@
         "entryDataOptions": [
             {"id": 1, "description": "Liberar a Darek y salir", "outcome": {"type": "GoToEntry", "entry": 230}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [210, {
         "entryDataId": 210,
         "entryDataNarrative": "El Caballero de la Muerte te derrota. Libera a Darek para que huya, luego te toca la frente.\n\n\"Has demostrado ser digno. Tu destino se ha aclarado.\"\n\nSientes la vida abandonándote... y una nueva energía entrando.\n\n\"¡Ahora levántate como mi ESCUDERO!\"\n\n¡Te has convertido en el Escudero del Caballero de la Muerte!\n\n[FIN - DESTINO OSCURO]",
         "entryDataOptions": [],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [{"name": "currentHP", "modifier": "0"}],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [220, {
         "entryDataId": 220,
@@ -295,7 +508,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "Ver recompensas", "outcome": {"type": "GoToEntry", "entry": 240}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [{"name": "Oro", "quantity": 700, "type": "currency"}],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [230, {
         "entryDataId": 230,
@@ -303,13 +523,27 @@
         "entryDataOptions": [
             {"id": 1, "description": "Ver recompensas", "outcome": {"type": "GoToEntry", "entry": 240}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [{"name": "Oro", "quantity": 2000, "type": "currency"}],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [240, {
         "entryDataId": 240,
         "entryDataNarrative": "BOTÍN DE AVENTURA\n\nHas completado \"El Escudero del Caballero de la Muerte\".\n\nTu personaje avanza al NIVEL 3.\n\n¡Gracias por jugar!",
         "entryDataOptions": [],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [300, {
         "entryDataId": 300,
@@ -317,7 +551,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["Kobold", "Kobold", "KoboldMago"], "victory": 301, "defeat": 999}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [301, {
         "entryDataId": 301,
@@ -325,7 +566,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 125}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [{"name": "Daga", "type": "weapon", "quantity": 2}],
+            "inventory": [{"name": "Oro", "quantity": 120, "type": "currency"}],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [305, {
         "entryDataId": 305,
@@ -333,7 +581,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "Escapar de la red (Salvación DES CD 17)", "outcome": {"type": "SaveCheck", "attribute": "Dexterity", "dc": 17, "success": 306, "failure": 307}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [306, {
         "entryDataId": 306,
@@ -341,7 +596,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "¡Atacar!", "outcome": {"type": "StartCombat", "enemies": ["Goblin", "Goblin", "Goblin"], "victory": 308, "defeat": 999}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [307, {
         "entryDataId": 307,
@@ -349,7 +611,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "¡Combatir desde la red!", "outcome": {"type": "StartCombat", "enemies": ["Goblin", "Goblin", "Goblin"], "victory": 308, "defeat": 999}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [308, {
         "entryDataId": 308,
@@ -357,7 +626,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 125}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [{"name": "Armas de goblins", "type": "weapon"}, {"name": "Anillo mágico", "type": "ring"}],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [310, {
         "entryDataId": 310,
@@ -365,7 +641,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["CiempiésGigante"], "victory": 311, "defeat": 999}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [311, {
         "entryDataId": 311,
@@ -373,7 +656,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 125}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [315, {
         "entryDataId": 315,
@@ -381,7 +671,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "Escapar (Atletismo CD 15)", "outcome": {"type": "SkillCheck", "skill": "Athletics", "dc": 15, "success": 316, "failure": 317}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [316, {
         "entryDataId": 316,
@@ -389,7 +686,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["Cultista"], "victory": 318, "defeat": 999}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [317, {
         "entryDataId": 317,
@@ -397,7 +701,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "¡Combatir desde el pozo!", "outcome": {"type": "StartCombat", "enemies": ["Cultista"], "victory": 318, "defeat": 999}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [318, {
         "entryDataId": 318,
@@ -405,7 +716,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 125}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [{"name": "Ballesta de mano", "type": "weapon"}, {"name": "Cimitarra", "type": "weapon"}],
+            "inventory": [{"name": "Virotes", "quantity": 18, "type": "ammunition"}, {"name": "Información sobre la Orden de Kiaransalee", "type": "information"}],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [320, {
         "entryDataId": 320,
@@ -413,7 +731,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["Esqueleto"], "victory": 321, "defeat": 999}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [321, {
         "entryDataId": 321,
@@ -421,7 +746,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 165}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [325, {
         "entryDataId": 325,
@@ -429,7 +761,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["Zombie"], "victory": 326, "defeat": 999}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [326, {
         "entryDataId": 326,
@@ -437,7 +776,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "Ir a la cripta", "outcome": {"type": "GoToEntry", "entry": 165}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [330, {
         "entryDataId": 330,
@@ -445,7 +791,14 @@
         "entryDataOptions": [
             {"id": 1, "description": "¡Combatir!", "outcome": {"type": "StartCombat", "enemies": ["MurciélagoDelBosque"], "victory": 331, "defeat": 999}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [331, {
         "entryDataId": 331,
@@ -453,12 +806,26 @@
         "entryDataOptions": [
             {"id": 1, "description": "Continuar", "outcome": {"type": "GoToEntry", "entry": 125}}
         ],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }],
     [999, {
         "entryDataId": 999,
         "entryDataNarrative": "Tu aventura termina aquí.\n\n¿Por qué no crear un nuevo personaje e intentarlo de nuevo?\n\n¡Gracias por jugar \"El Escudero del Caballero de la Muerte\"!",
         "entryDataOptions": [],
-        "entryDataRules": []
+        "entryDataRules": [],
+        "effects": {
+            "stats": [],
+            "equipment": [],
+            "inventory": [],
+            "attributes": [],
+            "skills": []
+        }
     }]
 ]

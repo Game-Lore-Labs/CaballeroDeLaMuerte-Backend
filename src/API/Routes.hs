@@ -133,6 +133,24 @@ routes stateRef config = do
                 status internalServerError500
                 json (errResponse e :: DTO.ApiResponse String)
 
+    post "/game/reset" $ do
+        result <- liftIO $ resetGameToInitialState config
+        case result of
+            ServiceOk _ -> do
+                -- Reload the game with the reset state
+                loadResult <- liftIO $ initializeApp config
+                case loadResult of
+                    ServiceOk appState -> do
+                        updateAppState stateRef appState
+                        updateCombatState stateRef Nothing  -- Clear any combat state
+                        json $ okResponse ("Game reset to initial state" :: String)
+                    ServiceErr e -> do
+                        status internalServerError500
+                        json (errResponse e :: DTO.ApiResponse String)
+            ServiceErr e -> do
+                status internalServerError500
+                json (errResponse e :: DTO.ApiResponse String)
+
     -- Entry / Adventure
 
     get "/entry/current" $ do
@@ -152,16 +170,16 @@ routes stateRef config = do
         (result, newState) <- liftIO $ selectOption (selectOptionId req) appState
         updateAppState stateRef newState
         case result of
-            NavigatedTo eid ->
-                json $ okResponse $ OptionResultDTO "navigated" Nothing Nothing (Just eid) Nothing Nothing
-            CheckPassed skill roll dc eid ->
-                json $ okResponse $ OptionResultDTO "check_passed" (Just roll) (Just dc) (Just eid) (Just $ show skill) Nothing
-            CheckFailed skill roll dc eid ->
-                json $ okResponse $ OptionResultDTO "check_failed" (Just roll) (Just dc) (Just eid) (Just $ show skill) Nothing
-            SavePassed attr roll dc eid ->
-                json $ okResponse $ OptionResultDTO "save_passed" (Just roll) (Just dc) (Just eid) Nothing (Just $ show attr)
-            SaveFailed attr roll dc eid ->
-                json $ okResponse $ OptionResultDTO "save_failed" (Just roll) (Just dc) (Just eid) Nothing (Just $ show attr)
+            NavigatedTo eid effects ->
+                json $ okResponse $ OptionResultDTO "navigated" Nothing Nothing (Just eid) Nothing Nothing effects
+            CheckPassed skill roll dc eid effects ->
+                json $ okResponse $ OptionResultDTO "check_passed" (Just roll) (Just dc) (Just eid) (Just $ show skill) Nothing effects
+            CheckFailed skill roll dc eid effects ->
+                json $ okResponse $ OptionResultDTO "check_failed" (Just roll) (Just dc) (Just eid) (Just $ show skill) Nothing effects
+            SavePassed attr roll dc eid effects ->
+                json $ okResponse $ OptionResultDTO "save_passed" (Just roll) (Just dc) (Just eid) Nothing (Just $ show attr) effects
+            SaveFailed attr roll dc eid effects ->
+                json $ okResponse $ OptionResultDTO "save_failed" (Just roll) (Just dc) (Just eid) Nothing (Just $ show attr) effects
             CombatStarted enemyNames victoryEid defeatEid -> do
                 -- Look up enemies from the enemy store
                 let enemyStore = appEnemies newState
